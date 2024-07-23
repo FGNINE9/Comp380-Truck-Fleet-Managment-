@@ -2,6 +2,7 @@
 public class Job 
 {
 
+JobSetup
 	//vars
 	private int ID;
 	private String startLocation;
@@ -146,6 +147,12 @@ public class Job
 		this.notes = notes;
 	}
 
+
+
+	//testing a commit
+	
+	//testing new ide
+	
 
 }
 
