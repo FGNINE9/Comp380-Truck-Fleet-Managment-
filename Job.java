@@ -2,7 +2,6 @@
 public class Job 
 {
 
-JobSetup
 	//vars
 	private int ID;
 	private String startLocation;
