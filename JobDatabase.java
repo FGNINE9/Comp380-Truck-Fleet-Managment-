@@ -1,74 +1,94 @@
 import java.io.*;
 import java.util.ArrayList;
 
-
 public class JobDatabase
 {
-
+    //ArrayList of all jobs in the database
     private ArrayList<Job> jobList;
 
     //default constructor for jobDatabase
+    /**
+    * This is the default constructor for a JobDatabase<br>
+    * Uses the buildDatabaseFromFile method after initializing the arrayList of jobs to fill it in
+    */
     public JobDatabase()
     {
         jobList = new ArrayList<>();
-        buildDatabsaeFromFile();
+        buildDatabaseFromFile();//run this method to set up a new database based on our text file
     }
 
-
-
-    public boolean addJob(Job job)
+    /**
+     * Method to add a job into the database.<br>
+     * Writes to the database to update it in case you close the file.
+     * @param job the Job to be added into the database
+     */
+    public void addJob(Job job)
     {
         jobList.add(job);
-
         writeDatabase();
-        return true;
     }
 
+    /**
+     * Prints the database<br>
+     * Calls printJob() for each job in the database's arraylist
+     * @return a string of all the jobs in a printable form
+     */
     public String printDatabse()
     {
         String output ="+++++++++++++++++++++++"
                       +"\n  Printing Database\n\n";
+
         for(int i=0;i<jobList.size();i++)
         {
             output += jobList.get(i).printJob() + "\n\n";
         }
+
         output +="+++++++++++++++++++++++";
         return output;
     }
 
+    /**
+     * Writes the current arraylist of jobs into the database text file.<br>
+     * The file can be found in the source directory of this project
+     * @return returns the success or failure of this method
+     */
     private boolean writeDatabase()
     {
-            try
+        try
+        {
+            //set up a writer
+            File target = new File("database.txt");
+            BufferedWriter writer = null;
+            writer = new BufferedWriter(new FileWriter(target));
+
+            for(int i=0;i<jobList.size();i++)
             {
-
-                //set up a writer, that makes a new log file each day
-                File target = new File("database.txt");
-                BufferedWriter writer = null;
-                writer = new BufferedWriter(new FileWriter(target));
-
-
-                for(int i=0;i<jobList.size();i++)
-                {
-                    writer.write(jobList.get(i).logJob());
-
-                }
-
-                writer.close();
-            }//end try
-
-            catch(IOException | RuntimeException e)
-            {
-                System.out.println(e.toString()+"\n");
-                System.out.println("writer is having issues");
-                return false;
+                writer.write(jobList.get(i).logJob());
             }
+
+            writer.close();
+        }//end try
+
+        catch(IOException | RuntimeException e)
+        {
+            System.out.println(e.toString()+"\n");
+            System.out.println("writer is having issues");
+            return false;
+        }
 
         return true;
     }
 
-    private boolean buildDatabsaeFromFile()
+
+    /**
+     * Reads the database text file and writes it into the database.<br>
+     * Used in the default constructor for JobDatabase in an effort to make things easier.<br>
+     * @return returns the success or failure of this method
+     */
+    private boolean buildDatabaseFromFile()
     {
-        try {
+        try
+        {
 
             File target = new File("database.txt");
             FileReader fileReader = new FileReader(target);
@@ -81,28 +101,19 @@ public class JobDatabase
                 line = br.readLine();
                 String[] readJob = line.split(",");
 
-
                 //remove the whitespace that keeps getting tacked on
                 for(int i=0;i<readJob.length;i++)
                 {
                     readJob[i] = readJob[i].trim();
                 }
 
-                for(int i=0;i<readJob.length;i++)
-                {
-                    System.out.print("  |"+readJob[i]);
-                }
-
-                System.out.print("\n out of for \n");
-
                 this.addJob(new Job(readJob));
 
-                System.out.print("\n after job make \n");
+            }//while end
 
+        } //try end
 
-            }
-
-        } catch(IOException e)
+        catch(IOException e)
         {
             System.out.println("MISSING DATABASE FILE");
             return false;
@@ -110,6 +121,5 @@ public class JobDatabase
 
         return true;
     }
-
 
 }
