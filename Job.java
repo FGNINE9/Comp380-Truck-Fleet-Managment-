@@ -13,27 +13,30 @@ public class Job
 	private String notes;
 
 
-
-	//default constructor
+	/**
+	 * Default constructor for a Job<br>
+	 * Sets the ID to -1, then the rest of the variables will be null or 0
+	 */
 	public Job()
 	{
 		this.ID = -1;
 		this.startLocation = "AWAITING INPUT";
 		this.endLocation = "AWAITING OUTPUT";
-
 	}
 
-
-	//constructor for just ID
-	public Job(int ID)
-	{
-		this.ID = ID;
-		this.startLocation = "AWAITING INPUT";
-		this.endLocation = "AWAITING OUTPUT";
-
-	}
-
-	//full constructor
+	/**
+	 * A full constructor for a Job.<br>
+	 * Used when manually creating a job
+	 *
+	 * @param ID the job ID
+	 * @param startLocation where the Job begins
+	 * @param endLocation where the Job ends
+	 * @param paid whether the job has been paid
+	 * @param status current status of the load
+	 * @param truckerID ID of the trucker assigned to this Job
+	 * @param jobHours amount of hours this Job will take to complete
+	 * @param notes any extra information
+	 */
 	public Job(int ID, String startLocation, String endLocation, boolean paid, String status, int truckerID, int jobHours, String notes)
 	{
 		this.ID = ID;
@@ -46,7 +49,11 @@ public class Job
 		this.notes = notes;
 	}
 
-	//constructor for an array of String job, used to make a job from the database
+	/**
+	 * Constructor for a Job that takes a string array sized 8<br>
+	 * Used to create a job from a string read from the database text file
+	 * @param in the string array sized 8 of all the inputs
+	 */
 	public Job(String[] in)
 	{
 		this.ID = Integer.parseInt(in[0]);
@@ -57,9 +64,13 @@ public class Job
 		this.truckerID = Integer.parseInt(in[5]);
 		this.jobHours = Integer.parseInt(in[6]);
 		this.notes = in[7];
-
 	}
 
+
+	/**
+	 * Returns a Job in a string, expanded view
+	 * @return The Job in a readable way
+	 */
 	public String printJob()
 	{
 		return("Job report for job #" +ID
@@ -72,6 +83,11 @@ public class Job
 				+"\nNotes: " + notes);
 	}
 
+
+	/**
+	 * Turns a job into a line to be inputted into the database<br>
+	 * @return the Job in a single line, comma delineated
+	 */
 	public String logJob()
 	{
 		return(ID +", " + startLocation
@@ -81,7 +97,6 @@ public class Job
 				  +", "+truckerID
 				  +", " + jobHours
 				  +", " + notes+"\n");
-
 	}
 
 
