@@ -46,6 +46,19 @@ public class Job
 		this.notes = notes;
 	}
 
+	//constructor for an array of String job, used to make a job from the database
+	public Job(String[] in)
+	{
+		this.ID = Integer.parseInt(in[0]);
+		this.startLocation = in[1];
+		this.endLocation = in[2];
+		this.paid = Boolean.parseBoolean(in[3]);
+		this.status = in[4];
+		this.truckerID = Integer.parseInt(in[5]);
+		this.jobHours = Integer.parseInt(in[6]);
+		this.notes = in[7];
+
+	}
 
 	public String printJob()
 	{
@@ -59,6 +72,17 @@ public class Job
 				+"\nNotes: " + notes);
 	}
 
+	public String logJob()
+	{
+		return(ID +", " + startLocation
+				  +", " + endLocation
+				  +", " + paid
+				  +", " + status
+				  +", "+truckerID
+				  +", " + jobHours
+				  +", " + notes+"\n");
+
+	}
 
 
 
@@ -145,13 +169,6 @@ public class Job
 	{
 		this.notes = notes;
 	}
-
-
-
-	//testing a commit
-	
-	//testing new ide
-	
 
 }
 
