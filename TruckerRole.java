@@ -49,7 +49,34 @@ public class TruckerRole
     {
         //create a new object Job for the provided details
         Job job = new Job(jobID, startLocation, endLocation, paid, status, this.IDNumber, jobHours, notes);
-        
 
+        // Add the new job to the job database
+        jobDatabase.addJob(job);
 
-}
+        //notify the trucker that data was added succesfully
+        System.out.println("Load data has been added successfully for the job ID: " + jobID);
+    }
+
+    //setter and getters
+
+    public int getIDNumber(){
+        return IDNumber;
+    }
+    
+    public void setIDNumber(int IDNumber){
+        this.IDNumber = IDNumber;
+    }
+
+    public String getPassword(){
+        return password;
+    }
+
+    public void setPassword(String password){
+        this.password = password;
+    }
+    public String getName(){
+        return name;
+    }
+    public void setName(String name){
+        this.name = name;
+    }
