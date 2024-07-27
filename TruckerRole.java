@@ -6,7 +6,7 @@ public class TruckerRole
     private int IDNumber;
     private String password;
     private String name;
-    private JobDatabase jobDatabase;  //to interact with job data
+    private JobDatabase jobDatabase();  //to interact with job data
 
     public TruckerRole()
     {
@@ -27,6 +27,7 @@ public class TruckerRole
     //Method to view current jobs assigned to the trucker
     public void viewCurrentJobs()
     {
+        //Declare 'jobs' to hold a list of 'Job' objects
         List<Job> jobs = jobDatabase.getJobsByTruckerID(this.IDNumber);
 
         //check it any job is assigned
@@ -36,7 +37,7 @@ public class TruckerRole
         } 
         else 
         {
-            //print details of each job assigned
+            //for-each loop to print details of each 'Job' object in the 'jobs' list 
             for (Job job : jobs)
                 {
                     System.out.println(job.printJob());
