@@ -45,7 +45,7 @@ public class TruckerRole
     }
 
 //Method to input information about a job
-    public void inputLoadData (int jobID, String startLocation, String endLocation, boolean paid, Sting status, int jobHours, String notes)
+    public void inputLoadData (int jobID, String startLocation, String endLocation, boolean paid, String status, int jobHours, String notes)
     {
         //create a new object Job for the provided details
         Job job = new Job(jobID, startLocation, endLocation, paid, status, this.IDNumber, jobHours, notes);
