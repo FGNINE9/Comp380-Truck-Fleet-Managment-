@@ -17,7 +17,6 @@ public class Main extends Application {
 		primaryStage.setTitle("Fleet Manager");
 		
 		
-		
 		Signin = new Button();
 		Signin.setText("Sign in!");
 		Signin.setLayoutX(500);
@@ -33,6 +32,16 @@ public class Main extends Application {
 	
 	public static void main(String[] args) {
 		launch(args);
+
+		// create trucker role instant
+		TruckerRole trucker = new TruckerRole(65, "password123", "John Adam");
+
+		// view current jobs
+		trucker.viewCurrentJobs();
+
+		//Input Datafor new job
+		trucker.inputLoadData(20, "Los Angeles", "New York", false, "In Transit", 7, "No problems");
+
 	}
 }
 
