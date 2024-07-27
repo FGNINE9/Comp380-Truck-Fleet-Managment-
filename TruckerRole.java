@@ -57,6 +57,7 @@ public class TruckerRole
         System.out.println("Load data has been added successfully for the job ID: " + jobID);
     }
 
+    
     //setter and getters
 
     public int getIDNumber(){
@@ -74,9 +75,11 @@ public class TruckerRole
     public void setPassword(String password){
         this.password = password;
     }
+    
     public String getName(){
         return name;
     }
+    
     public void setName(String name){
         this.name = name;
     }
