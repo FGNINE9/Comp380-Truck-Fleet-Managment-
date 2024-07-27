@@ -33,7 +33,7 @@ public class JobDatabase
      * Calls printJob() for each job in the database's arraylist
      * @return a string of all the jobs in a printable form
      */
-    public String printDatabse()
+    public String printDatabase()
     {
         String output ="+++++++++++++++++++++++"
                       +"\n  Printing Database\n\n";
