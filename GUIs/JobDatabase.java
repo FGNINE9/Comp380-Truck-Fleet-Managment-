@@ -1,3 +1,5 @@
+package GUIs;
+
 import java.io.*;
 import java.util.ArrayList;
 
@@ -8,7 +10,7 @@ public class JobDatabase
 
     //default constructor for jobDatabase
     /**
-    * This is the default constructor for a JobDatabase<br>
+    * This is the default constructor for a GUIs.JobDatabase<br>
     * Uses the buildDatabaseFromFile method after initializing the arrayList of jobs to fill it in
     */
     public JobDatabase()
@@ -20,7 +22,7 @@ public class JobDatabase
     /**
      * Method to add a job into the database.<br>
      * Writes to the database to update it in case you close the file.
-     * @param job the Job to be added into the database
+     * @param job the GUIs.Job to be added into the database
      */
     public void addJob(Job job)
     {
@@ -82,7 +84,7 @@ public class JobDatabase
 
     /**
      * Reads the database text file and writes it into the database.<br>
-     * Used in the default constructor for JobDatabase in an effort to make things easier.<br>
+     * Used in the default constructor for GUIs.JobDatabase in an effort to make things easier.<br>
      * @return returns the success or failure of this method
      */
     private boolean buildDatabaseFromFile()
