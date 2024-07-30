@@ -1,3 +1,6 @@
+package GUIs;
+
+
 public class AdministratorRole
 {
 
@@ -40,7 +43,7 @@ public class AdministratorRole
     	Job job = new Job();
     	String command = "";
     	
-        System.out.println("Assign Job to Employee...");
+        System.out.println("Assign GUIs.Job to Employee...");
         job.printJob();
         System.out.println("Please Select Options for job");
         if (command == "Yes") {
