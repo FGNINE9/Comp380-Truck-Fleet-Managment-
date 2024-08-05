@@ -17,20 +17,24 @@ public class DriverGUI extends Application {
     @Override
     public void start(Stage Stage){
 
+        Job GetJob = new Job();
+
         Stage.setMaximized(true);
         Stage.show();
-        double Ywin = Stage.getY();
-        double Xwin = Stage.getX();
+        double Xwin = 1280;
+        double Ywin = 720;
         String Name = "";
 
 
         //Labels
-        Label title = new Label("Welcome To fleet Manager" + Name);
-        title.setTranslateY(-Ywin/3);
+        Label title = new Label("Pending Jobs: \n\n");
+        title.setTranslateX(-Xwin/2.3);
+        title.setTranslateY(-Ywin/2.3);
 
         // Buttons
-        Button Upload = new Button("Upload");
-        Upload.setTranslateX(-Xwin/4);
+        Button ReturnB = new Button("Return");
+        ReturnB.setTranslateX(-Xwin/2.3);
+        ReturnB.setTranslateY(Ywin/2.3);
 
         //Images
         Image icon = new Image("Icon.png");
@@ -38,17 +42,17 @@ public class DriverGUI extends Application {
         //Layout
         StackPane root = new StackPane();
         root.getChildren().add(title);
-        root.getChildren().add(Upload);
+        root.getChildren().add(ReturnB);
 
         //Scenes
-        Scene scene = new Scene(root);
+        Scene scene = new Scene(root, Xwin, Ywin);
 
         //Primary Stage
         Stage.getIcons().add(icon);
         Stage.setScene(scene);
         Stage.setTitle("Fleet Management System");
 
-        Upload.setOnAction(new EventHandler<ActionEvent>()
+        ReturnB.setOnAction(new EventHandler<ActionEvent>()
         {
             public void handle(ActionEvent event) {
 
