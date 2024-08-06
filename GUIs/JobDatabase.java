@@ -41,9 +41,10 @@ public class JobDatabase
             return false;
             }
         }
-
+        System.out.println("ADDING JOB");
         //victory state
         jobList.add(job);
+        writeDatabase();
         return true;
     }
 
@@ -96,6 +97,9 @@ public class JobDatabase
      */
     private boolean writeDatabase()
     {
+
+        System.out.println("Writing Database");
+
         try
         {
             //set up a writer
@@ -176,7 +180,14 @@ public class JobDatabase
     }
 
 
+    public ArrayList<Job> getJobListSortedByDate()
+    {
+        ArrayList<Job> output = jobList;
 
+        Collections.sort(output, new JobIDComparator());
+
+        return output;
+    }
 }
 
 

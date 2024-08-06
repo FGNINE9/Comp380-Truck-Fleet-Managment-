@@ -1,5 +1,6 @@
--1, AWAITING INPUT, AWAITING OUTPUT, false, null, 3, 4, null
-12, LA, Vegas, false, En Route, 66, 6, Nothing to note
-13, CSUN, SMC, false, crashed, 1, 2, smelly
-15, a, b, false, c, 390, 100, sasasasa
-20, r, t, true, d, 40, 6, aaaaa
+100, here, there, true, done, Fri Feb 10 00:00:00 PST 1995, 90, 8, nothing special
+-1, AWAITING INPUT, there, false, nuull, Mon Jan 01 00:00:00 PST 1900, 3, 4, nullthing
+12, LA, Las Vegas, false, En Route, Thu Feb 20 00:00:00 PST 2020, 6, 67, load is extremely wide
+13, CSUN, SMC, true, crashed, Wed Oct 11 00:00:00 PDT 2023, 1, 2, smelly
+15, a, b, true, c, Thu Apr 04 00:00:00 PST 300, 390, 100, asssassasas
+20, rr, ttt, false, unkown, Fri Mar 03 00:00:00 PST 30000, 44, 1, asssassasas
