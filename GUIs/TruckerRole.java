@@ -1,4 +1,7 @@
+package GUIs;
+
 import java.util.List;
+
 
 public class TruckerRole
 {
@@ -6,14 +9,14 @@ public class TruckerRole
     private int IDNumber;
     private String password;
     private String name;
-    private JobDatabase jobDatabase();  //to interact with job data
+    private JobDatabase jobDatabase;  //to interact with job data
 
     public TruckerRole()
     {
         IDNumber = -1;
         password = "NOT INPUT";
         name = "DEFAULT";
-        jobDatabase = new JobDatabase;
+        jobDatabase = new JobDatabase();
     }
 
     public TruckerRole(int IDNumber, String password, String name)
