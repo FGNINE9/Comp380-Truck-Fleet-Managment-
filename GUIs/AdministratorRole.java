@@ -25,13 +25,13 @@ public class AdministratorRole
 
     public void EditEmployeeData(){
     	JobDatabase database = new JobDatabase();
-    	String command = "";
+    	String command = "Yes";
     	
         System.out.println("Printing Employee Data...");
         database.printDatabase();
         System.out.println("Select Yes to Edit");
         System.out.println("Select No to Exit ");
-        if (command == "Yes") {
+        if ("Yes".equals(command)) {
         	System.out.println("Select fields to edit ");
         	// edit specific employee fields
         } else {
@@ -41,12 +41,12 @@ public class AdministratorRole
     }
     public void AssignJobs(){
     	Job job = new Job();
-    	String command = "";
+    	String command = "Yes";
     	
         System.out.println("Assign GUIs.Job to Employee...");
         job.printJob();
         System.out.println("Please Select Options for job");
-        if (command == "Yes") {
+        if ("Yes".equals(command)) {
         	job.logJob();  
         } else {
         	System.out.println("Exit log");
@@ -54,23 +54,18 @@ public class AdministratorRole
         
     }
     public void ViewTickets() {
-        String command = "";
+        Tickets ticket = new Tickets();
+        String command = "Yes";
         System.out.println("Current ticket ");
         //Display Ticket information and then prompt user to download
-        //.printTicket();
+        ticket.PrintTicket();
         System.out.println("If you would like to download the Ticket enter DownloadTickets");
-        if (command == "Save"){
-            DownloadTickets();
+        if ("Save".equals(command)){
+            ticket.DownloadTickets();
+        } else {
+            System.out.println("Exit");
         }
 
     }
-    public void DownloadTickets(){
-        //Function to export ticket file
-        System.out.println("Download ticket");
-        //create ticket file
-    }
-
-
-
 
 }
