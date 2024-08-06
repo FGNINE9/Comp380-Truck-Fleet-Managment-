@@ -7,10 +7,14 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+
+import java.awt.*;
 
 
 public class DriverGUI extends Application {
@@ -21,11 +25,10 @@ public class DriverGUI extends Application {
 
         Job GetJob = new Job();
 
-        Stage.setMaximized(true);
         Stage.show();
-        double Xwin = 1280;
-        double Ywin = 720;
-        String Name = "";
+        double Xwin = 1920;
+        double Ywin = 1080;
+        String Jobs = GetJob.printJob();
 
 
         //Labels
@@ -42,21 +45,28 @@ public class DriverGUI extends Application {
         Image icon = new Image("Icon.png");
 
         //Layout
-        BorderPane root = new BorderPane();
+        StackPane root = new StackPane();
         root.getChildren().add(title);
         root.getChildren().add(ReturnB);
 
+        TextArea textBox= new TextArea();
+        textBox.setText(Jobs);
+        textBox.setEditable(false);
+
         ScrollPane scroll = new ScrollPane();
-        scroll.setTranslateX(Xwin/2.1);
-        scroll.setTranslateY(Ywin- Ywin/10);
+        scroll.setTranslateX(Xwin/100);
+        scroll.setTranslateY(Ywin/100);
+        scroll.setPrefViewportHeight(Xwin/2.3);
         scroll.setPannable(true);
-        scroll.setContent();
+        scroll.setContent(textBox);
         root.getChildren().add(scroll);
 
         //Scenes
         Scene scene = new Scene(root, Xwin, Ywin);
 
+
         //Primary Stage
+        Stage.setResizable(false);
         Stage.getIcons().add(icon);
         Stage.setScene(scene);
         Stage.setTitle("Fleet Management System");
@@ -75,11 +85,6 @@ public class DriverGUI extends Application {
 
         launch(args);
 
-    }
-
-    public static String getName(int ID){
-
-        return "None";
     }
 
 
