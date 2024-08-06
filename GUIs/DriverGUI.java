@@ -6,7 +6,9 @@ import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
@@ -40,9 +42,16 @@ public class DriverGUI extends Application {
         Image icon = new Image("Icon.png");
 
         //Layout
-        StackPane root = new StackPane();
+        BorderPane root = new BorderPane();
         root.getChildren().add(title);
         root.getChildren().add(ReturnB);
+
+        ScrollPane scroll = new ScrollPane();
+        scroll.setTranslateX(Xwin/2.1);
+        scroll.setTranslateY(Ywin- Ywin/10);
+        scroll.setPannable(true);
+        scroll.setContent();
+        root.getChildren().add(scroll);
 
         //Scenes
         Scene scene = new Scene(root, Xwin, Ywin);
