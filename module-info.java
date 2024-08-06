@@ -1,4 +1,4 @@
-module Guis
+module GUIs
 {
     requires javafx.controls;
     requires javafx.graphics;

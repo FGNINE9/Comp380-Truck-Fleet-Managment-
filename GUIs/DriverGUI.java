@@ -24,8 +24,8 @@ public class DriverGUI extends Application {
         Job GetJob = new Job();
 
         Stage.show();
-        double Xwin = 1920;
-        double Ywin = 1080;
+        double Xwin = 800;
+        double Ywin = 600;
         String Jobs = GetJob.printJob();
 
 
@@ -80,11 +80,9 @@ public class DriverGUI extends Application {
 
 
     public static void main(String[] args) {
-
         launch(args);
 
     }
-
 
 
 
