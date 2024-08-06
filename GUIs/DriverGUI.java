@@ -9,12 +9,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-
-import java.awt.*;
 
 
 public class DriverGUI extends Application {
@@ -22,6 +18,8 @@ public class DriverGUI extends Application {
 
     @Override
     public void start(Stage Stage){
+
+        JobDatabase data = new JobDatabase();
 
         Job GetJob = new Job();
 

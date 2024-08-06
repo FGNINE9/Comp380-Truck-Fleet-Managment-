@@ -2,6 +2,7 @@ package GUIs;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class JobDatabase
 {
@@ -21,13 +22,52 @@ public class JobDatabase
 
     /**
      * Method to add a job into the database.<br>
-     * Writes to the database to update it in case you close the file.
+     * Writes to the database to update it in case you close the file.<br>
+     * Will return false and not input the job if another job exists with the same job ID number
      * @param job the GUIs.Job to be added into the database
+     * @return boolean returns true if the method worked
      */
-    public void addJob(Job job)
+    public boolean addJob(Job job)
     {
+        int newJobID = job.getID();
+        int failflag =0;
+
+        //look to see if the jobslist already contains a job with the ID number
+        for(int i=0; i<jobList.size(); i++)
+        {
+            if(jobList.get(i).getID() == newJobID)
+            {
+            System.out.println("JOBDATABASE ERROR: job already exists with that job ID number");
+            return false;
+            }
+        }
+
+        //victory state
         jobList.add(job);
-        writeDatabase();
+        return true;
+    }
+
+
+    /**
+     * Method used to remove a job from the database <br>
+     * Deletes a job by ID, if two jobs exist with the same ID(which shouldnt happen),<br>
+     * instead deletes the first job on the list
+     * @param ID the ID number of the job you want to remove
+     * @return boolean returns true if a job was removed
+     */
+    public boolean removeJob(int ID)
+    {
+        //iterate through the list of jobs to find the first one matching the ID
+        for(int i=0;i<jobList.size();i++)
+        {
+            if(jobList.get(i).getID() == ID)
+            {
+                jobList.remove(i);
+                writeDatabase();
+                return true;
+            }
+        }
+        return false;
     }
 
     /**
@@ -124,4 +164,19 @@ public class JobDatabase
         return true;
     }
 
+
+
+    public ArrayList<Job> getJobListSortedByID()
+    {
+        ArrayList<Job> output = jobList;
+
+        Collections.sort(output, new JobIDComparator());
+
+        return output;
+    }
+
+
+
 }
+
+

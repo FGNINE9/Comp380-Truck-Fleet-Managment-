@@ -1,14 +1,17 @@
 package GUIs;
 
+import java.util.Date;
+
 public class Job
 {
 
 	//vars
-	private int ID;
+	private int    ID;
 	private String startLocation;
 	private String endLocation;
 	private boolean paid;
 	private String status;
+	private Date completionTime;
 	private int truckerID;
 	private int jobHours;
 	private String notes;
@@ -38,13 +41,14 @@ public class Job
 	 * @param jobHours amount of hours this GUIs.Job will take to complete
 	 * @param notes any extra information
 	 */
-	public Job(int ID, String startLocation, String endLocation, boolean paid, String status, int truckerID, int jobHours, String notes)
+	public Job(int ID, String startLocation, String endLocation, boolean paid, String status,Date completionTime, int truckerID, int jobHours, String notes)
 	{
 		this.ID = ID;
 		this.startLocation = startLocation;
 		this.endLocation = endLocation;
 		this.paid = paid;
 		this.status = status;
+		this.completionTime = completionTime;
 		this.truckerID = truckerID;
 		this.jobHours = jobHours;
 		this.notes = notes;
@@ -62,6 +66,7 @@ public class Job
 		this.endLocation = in[2];
 		this.paid = Boolean.parseBoolean(in[3]);
 		this.status = in[4];
+		this.completionTime = new Date(Long.parseLong(in[5]));
 		this.truckerID = Integer.parseInt(in[5]);
 		this.jobHours = Integer.parseInt(in[6]);
 		this.notes = in[7];
@@ -79,6 +84,7 @@ public class Job
 				+"\nEnd: " + endLocation
 				+"\nPaid: " + paid
 				+"\nStatus: " + status
+				+"\ncompletionTime" + completionTime
 				+"\nAssigned to: "+truckerID
 				+"\nHours: " + jobHours
 				+"\nNotes: " + notes);
@@ -95,6 +101,7 @@ public class Job
 				  +", " + endLocation
 				  +", " + paid
 				  +", " + status
+				  +", " + completionTime
 				  +", "+truckerID
 				  +", " + jobHours
 				  +", " + notes+"\n");
@@ -156,6 +163,16 @@ public class Job
 		this.status = status;
 	}
 
+	//get and set for completionDate
+	public Date getCompletionTime()
+	{
+		return completionTime;
+	}
+	private void setCompletionTime(Date completionTime)
+	{
+		this.completionTime = completionTime;
+	}
+
 	//get and set for truckerID
 	public int getTruckerID()
 	{
@@ -188,4 +205,18 @@ public class Job
 
 }
 
+/**
+ * Comparator for sorting jobs by ID number
+ */
+class JobIDComparator implements java.util.Comparator<Job>
+{
+	@Override
+	public int compare(Job a, Job b)
+	{
+		return a.getID() - b.getID();
+	}
 
+
+
+
+}
