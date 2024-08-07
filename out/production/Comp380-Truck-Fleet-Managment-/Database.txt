@@ -3,3 +3,4 @@
 12, LA, Las Vegas, false, En Route, Thu Feb 20 00:00:00 PST 2020, 6, 67, load is extremely wide
 13, CSUN, SMC, true, crashed, Wed Oct 11 00:00:00 PDT 2023, 1, 2, smelly
 15, a, b, true, c, Thu Apr 04 00:00:00 PST 300, 390, 100, asssassasas
+20, rr, ttt, false, unkown, Fri Mar 03 00:00:00 PST 30000, 44, 1, asssassasas

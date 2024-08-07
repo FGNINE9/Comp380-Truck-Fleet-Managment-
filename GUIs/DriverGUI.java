@@ -19,7 +19,7 @@ public class DriverGUI extends Application {
     @Override
     public void start(Stage Stage){
 
-        JobDatabase data = new JobDatabase();
+        //JobDatabase data = new JobDatabase();
 
         Job GetJob = new Job();
 
