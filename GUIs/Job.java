@@ -66,10 +66,10 @@ public class Job
 		this.endLocation = in[2];
 		this.paid = Boolean.parseBoolean(in[3]);
 		this.status = in[4];
-		this.completionTime = new Date(Long.parseLong(in[5]));
-		this.truckerID = Integer.parseInt(in[5]);
-		this.jobHours = Integer.parseInt(in[6]);
-		this.notes = in[7];
+		this.completionTime = new Date(in[5]);
+		this.truckerID = Integer.parseInt(in[6]);
+		this.jobHours = Integer.parseInt(in[7]);
+		this.notes = in[8];
 	}
 
 
