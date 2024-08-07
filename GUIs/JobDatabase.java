@@ -20,6 +20,16 @@ public class JobDatabase
     }
 
     /**
+     * Method mostly for testing used to get a job by its number oderwise on the list
+     * @param target gets a specific job by number on the list
+     * @return Job the job at element target
+     */
+    public Job getJob(int target)
+    {
+        return jobList.get(target);
+    }
+
+    /**
      * Method to add a job into the database.<br>
      * Writes to the database to update it in case you close the file.<br>
      * Will return false and not input the job if another job exists with the same job ID number
@@ -88,6 +98,27 @@ public class JobDatabase
         output +="+++++++++++++++++++++++";
         return output;
     }
+
+
+    /**
+     * Method used to print out all jobs in a log form, used for testing
+     * @return returns a string of all jobs in log form
+     */
+    public String logDatabase()
+    {
+        String output ="";
+
+        for(int i=0;i<jobList.size();i++)
+        {
+            output += jobList.get(i).logJob()+"\n";
+        }
+
+
+        return output;
+    }
+
+
+
 
     /**
      * Writes the current arraylist of jobs into the database text file.<br>

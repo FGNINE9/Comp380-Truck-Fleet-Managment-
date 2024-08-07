@@ -74,8 +74,8 @@ public class Job
 
 
 	/**
-	 * Returns a GUIs.Job in a string, expanded view
-	 * @return The GUIs.Job in a readable way
+	 * Returns a Job in a string, expanded view
+	 * @return The Job in a readable way
 	 */
 	public String printJob()
 	{
@@ -93,7 +93,7 @@ public class Job
 
 	/**
 	 * Turns a job into a line to be inputted into the database<br>
-	 * @return the GUIs.Job in a single line, comma delineated
+	 * @return the Job in a single line, comma delineated
 	 */
 	public String logJob()
 	{
