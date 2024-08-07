@@ -205,6 +205,13 @@ public class Job
 
 }
 
+
+
+//----------------------------------------------------//
+//                 Comparators                        //
+//----------------------------------------------------//
+
+
 /**
  * Comparator for sorting jobs by ID number
  */
@@ -215,8 +222,16 @@ class JobIDComparator implements java.util.Comparator<Job>
 	{
 		return a.getID() - b.getID();
 	}
+}
 
-
-
-
+/**
+ * Comparator for sorting jobs by date number
+ */
+class JobCompletionTimeComparator implements java.util.Comparator<Job>
+{
+	@Override
+	public int compare(Job a, Job b)
+	{
+		return a.getCompletionTime().compareTo(b.getCompletionTime());
+	}
 }
