@@ -2,7 +2,6 @@ package GUIs;
 
 import java.io.*;
 import java.util.ArrayList;
-import java.util.Collections;
 
 public class JobDatabase
 {
@@ -41,7 +40,7 @@ public class JobDatabase
             return false;
             }
         }
-        System.out.println("ADDING JOB");
+        System.out.println("ADDING JOB  "+job.getID());
         //victory state
         jobList.add(job);
         writeDatabase();
@@ -98,7 +97,7 @@ public class JobDatabase
     private boolean writeDatabase()
     {
 
-        System.out.println("Writing Database");
+       // System.out.println("Writing Database");
 
         try
         {
@@ -174,7 +173,7 @@ public class JobDatabase
     {
         ArrayList<Job> output = jobList;
 
-        Collections.sort(output, new JobIDComparator());
+        output.sort(new JobIDComparator());
 
         return output;
     }
@@ -184,10 +183,12 @@ public class JobDatabase
     {
         ArrayList<Job> output = jobList;
 
-        Collections.sort(output, new JobIDComparator());
+        output.sort(new JobIDComparator());
 
         return output;
     }
+
+
 }
 
 
