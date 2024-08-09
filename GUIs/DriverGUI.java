@@ -4,13 +4,12 @@ import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.control.TextArea;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+
+import java.util.Date;
 
 
 public class DriverGUI extends Application {
@@ -19,7 +18,7 @@ public class DriverGUI extends Application {
     @Override
     public void start(Stage Stage){
 
-        //JobDatabase data = new JobDatabase();
+        JobDatabase data = new JobDatabase();
 
         Job GetJob = new Job();
 
@@ -30,14 +29,14 @@ public class DriverGUI extends Application {
 
 
         //Labels
-        Label title = new Label("Pending Jobs: \n\n");
+        Label title = new Label("Pending Jobs:");
         title.setTranslateX(-Xwin/2.3);
-        title.setTranslateY(-Ywin/2.3);
+        title.setTranslateY(-Ywin/2.12);
 
         // Buttons
-        Button ReturnB = new Button("Return");
-        ReturnB.setTranslateX(-Xwin/2.3);
-        ReturnB.setTranslateY(Ywin/2.3);
+        Button returnButton = new Button("Return");
+        returnButton.setTranslateX(Xwin/2.3);
+        returnButton.setTranslateY(Ywin/2.3);
 
         //Images
         Image icon = new Image("Icon.png");
@@ -45,26 +44,32 @@ public class DriverGUI extends Application {
         //Layout
         StackPane root = new StackPane();
         root.getChildren().add(title);
-        root.getChildren().add(ReturnB);
+        root.getChildren().add(returnButton);
 
-        TextArea textBox= new TextArea();
-        textBox.setPrefSize(175, 175);
-        textBox.setText(Jobs);
-        textBox.setEditable(false);
-        textBox.setWrapText(true);
-        textBox.setTranslateX(Xwin/45);
-        textBox.setTranslateY(Ywin/9.5);
+        TableView JobTable = new TableView();
+        TableColumn ID = new TableColumn("ID");
+        TableColumn From = new TableColumn("From");
+        TableColumn To = new TableColumn("To");
+        TableColumn Paid = new TableColumn("Paid");
+        TableColumn Status = new TableColumn("Status");
+        TableColumn Notes = new TableColumn("Notes");
+        JobTable.getColumns().addAll(ID, From, To, Paid, Status, Notes);
+
+        JobTable.setPrefSize(600, 550);
+        JobTable.setEditable(false);
+        JobTable.setTranslateX(Xwin/50);
+        JobTable.setTranslateY(Ywin/20);
 
         ScrollPane scroll = new ScrollPane();
 
-        scroll.setContent(textBox);
+        scroll.setContent(JobTable);
         root.getChildren().add(scroll);
 
         //Scenes
         Scene scene = new Scene(root, Xwin, Ywin);
 
         title.toFront();
-        ReturnB.toFront();
+        returnButton.toFront();
 
         //Primary Stage
         Stage.setResizable(false);
@@ -73,7 +78,7 @@ public class DriverGUI extends Application {
         Stage.setTitle("Fleet Management System");
         Stage.show();
 
-        ReturnB.setOnAction(new EventHandler<ActionEvent>()
+        returnButton.setOnAction(new EventHandler<ActionEvent>()
         {
             public void handle(ActionEvent event) {
 
