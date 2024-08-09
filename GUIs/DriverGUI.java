@@ -41,8 +41,7 @@ public class DriverGUI extends Application {
 
         //Layout
         StackPane root = new StackPane();
-        root.getChildren().add(title);
-        root.getChildren().add(returnButton);
+
 
         TableView JobTable = new TableView();
         TableColumn ID = new TableColumn("ID");
@@ -61,10 +60,9 @@ public class DriverGUI extends Application {
         ScrollPane scroll = new ScrollPane();
 
         scroll.setContent(JobTable);
-        root.getChildren().add(scroll);
-
+        root.getChildren().addAll(scroll, returnButton, title);
         //Scenes
-        Scene scene = new Scene(root, Xwin, Ywin);
+        Scene driverJobList = new Scene(root, Xwin, Ywin);
 
         title.toFront();
         returnButton.toFront();
@@ -72,7 +70,7 @@ public class DriverGUI extends Application {
         //Primary Stage
         Stage.setResizable(false);
         Stage.getIcons().add(icon);
-        Stage.setScene(scene);
+        Stage.setScene(driverJobList);
         Stage.setTitle("Fleet Management System");
         Stage.show();
 
