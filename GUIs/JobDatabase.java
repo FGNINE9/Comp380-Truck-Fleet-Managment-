@@ -3,9 +3,18 @@ package GUIs;
 import java.io.*;
 import java.util.ArrayList;
 
+
+/**
+ * Database of Jobs<br>
+ * Keeps an {@link ArrayList} of jobs<br>
+ * Also holds methods used to handle and sort the database.
+ * @author Sebastian Borner
+ */
 public class JobDatabase
 {
-    //ArrayList of all jobs in the database
+    /**
+     * All the Jobs in the Database
+     */
     private ArrayList<Job> jobList;
 
     //default constructor for jobDatabase
@@ -20,7 +29,7 @@ public class JobDatabase
     }
 
     /**
-     * Method mostly for testing used to get a job by its number oderwise on the list
+     * Method mostly for testing used to get a job by its number orderwise on the list
      * @param target gets a specific job by number on the list
      * @return Job the job at element target
      */
@@ -117,9 +126,6 @@ public class JobDatabase
         return output;
     }
 
-
-
-
     /**
      * Writes the current arraylist of jobs into the database text file.<br>
      * The file can be found in the source directory of this project
@@ -154,7 +160,6 @@ public class JobDatabase
 
         return true;
     }
-
 
     /**
      * Reads the database text file and writes it into the database.<br>
@@ -198,8 +203,10 @@ public class JobDatabase
         return true;
     }
 
-
-
+    /**
+     * Method used to get the list of jobs in the database ordered by ID
+     * @return a sorted ArrayList of jobs
+     */
     public ArrayList<Job> getJobListSortedByID()
     {
         ArrayList<Job> output = jobList;
@@ -209,7 +216,10 @@ public class JobDatabase
         return output;
     }
 
-
+    /**
+     * Method used to get the list of jobs in the database ordered by Date
+     * @return a sorted ArrayList of jobs
+     */
     public ArrayList<Job> getJobListSortedByDate()
     {
         ArrayList<Job> output = jobList;
@@ -218,7 +228,6 @@ public class JobDatabase
 
         return output;
     }
-
 
 }
 

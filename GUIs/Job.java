@@ -2,18 +2,56 @@ package GUIs;
 
 import java.util.Date;
 
+/**
+ * Job object, used to create and manipulate jobs
+ * @authos Sebastian Borner
+ */
 public class Job
 {
 
-	//vars
+	/**
+	 * The {@link Integer} ID number of the Job.
+	 */
 	private int    ID;
+
+	/**
+	 * The {@link String} location where the job starts.
+	 */
 	private String startLocation;
+
+	/**
+	 * The {@link String} location where the job ends.
+	 */
 	private String endLocation;
+
+	/**
+	 * The {@link Boolean} whether the job is paid.
+	 */
 	private boolean paid;
+
+	/**
+	 * The {@link String} status of the job.
+	 */
 	private String status;
+
+	/**
+	 * The {@link Date} when the job was completed.
+	 */
 	private Date completionTime;
+
+	/**
+	 * The {@link Integer} ID of the trucker this job is assigned to.
+	 */
 	private int truckerID;
+
+	/**
+	 * The {@link Integer} number of hours the job will take to complete.
+	 */
 	private int jobHours;
+
+	/**
+	 * The {@link String} special notes for the job.
+	 */
 	private String notes;
 
 
@@ -113,91 +151,161 @@ public class Job
 	//                 Getters and Setters                //
 	//----------------------------------------------------//
 
-	//get and set for ID
+	/**
+	 * Getter for ID
+	 * @return int ID
+	 */
 	public int getID()
 	{
 		return this.ID;
 	}
+	/**
+	* Setter for ID
+	 * @param ID int
+	*/
 	private void setID(int ID)
 	{
 		this.ID = ID;
 	}
 
-	//get and set for startLocation
+	/**
+	 * Getter for StartLocation
+	 * @return string StartLocation
+	 */
 	public String getStartLocation()
 	{
 		return startLocation;
 	}
+
+	/**
+	 * Setter for StartLocation
+	 * @param startLocation string
+	 */
 	private void setStartLocation(String startLocation)
 	{
 		this.startLocation = startLocation;
 	}
 
-	//get and set for endLocation
+	/**
+	 * Getter for endLocation
+	 * @return String endLocation
+	 */
 	public String getEndLocation()
 	{
 		return endLocation;
 	}
+	/**
+	 * Setter for endLocation
+	 * @param endLocation string
+	 */
 	private void setEndLocation(String endLocation)
 	{
 		this.endLocation = endLocation;
 	}
 
-	//get and set for paid
+	/**
+	 * Getter for paid
+	 * @return boolean paid
+	 */
 	public boolean getPaid()
 	{
 		return paid;
 	}
+
+	/**
+	 * Setter for paid
+	 * @param paid boolean
+	 */
 	private void setPaid(boolean paid)
 	{
 		this.paid = paid;
 	}
 
-	//get and set for status
+	/**
+	 * Getter for status
+	 * @return String status
+	 */
 	public String getStatus()
 	{
 		return status;
 	}
+
+	/**
+	 * Setter for status
+	 * @param status string
+	 */
 	private void setStatus(String status)
 	{
 		this.status = status;
 	}
 
-	//get and set for completionDate
+	/**
+	 * Getter for completionTime
+	 * @return Date completionTime
+	 */
 	public Date getCompletionTime()
 	{
 		return completionTime;
 	}
+
+	/**
+	 * Setter for completionTime
+	 * @param completionTime Date
+	 */
 	private void setCompletionTime(Date completionTime)
 	{
 		this.completionTime = completionTime;
 	}
 
-	//get and set for truckerID
+	/**
+	 * Getter for truckerID
+	 * @return int truckerID
+	 */
 	public int getTruckerID()
 	{
 		return truckerID;
 	}
+
+	/**
+	 * Setter for truckerID
+	 * @param truckerID int
+	 */
 	private void setTruckerID(int truckerID)
 	{
 		this.truckerID = truckerID;
 	}
 
-	//get and set for jobHours
+	/**
+	 * Getter for jobHours
+	 * @return int jobHours
+	 */
 	public int getJobHours()
 	{
 		return jobHours;
 	}
+
+	/**
+	 * Setter for jobHours
+	 * @param jobHours int
+	 */
 	private void setJobHours(int jobHours)
 	{
 		this.jobHours = jobHours;
 	}
 
-	//get and set for notes
+	/**
+	 * Getter for notes
+	 * @return String notes
+	 */
 	public String getNotes()
 	{
 		return notes;
 	}
+
+	/**
+	 * Setter for notes
+	 * @param notes String
+	 */
 	private void setNotes(String notes)
 	{
 		this.notes = notes;
