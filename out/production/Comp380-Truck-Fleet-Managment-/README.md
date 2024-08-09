@@ -1,3 +1,16 @@
-Testing hello
+(Delete Parenthesis when done)
 
-## Test Header
+## (Project Title)
+
+## (Project Description)
+
+## (Table of Contents???)
+
+## (Installation)
+
+## (How to Use)
+
+## (Configuration, (Before How to Use???))
+
+## (Credits, (links to team members github or linkedin etc.))
+

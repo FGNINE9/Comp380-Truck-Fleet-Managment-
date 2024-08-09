@@ -4,10 +4,7 @@ import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.control.TextArea;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
@@ -15,11 +12,9 @@ import javafx.stage.Stage;
 
 public class DriverGUI extends Application {
 
+    public void Driver(Stage primaryStage){
 
-    @Override
-    public void start(Stage Stage){
-
-        //JobDatabase data = new JobDatabase();
+        JobDatabase data = new JobDatabase();
 
         Job GetJob = new Job();
 
@@ -30,55 +25,80 @@ public class DriverGUI extends Application {
 
 
         //Labels
-        Label title = new Label("Pending Jobs: \n\n");
+        Label title = new Label("Pending Jobs:");
         title.setTranslateX(-Xwin/2.3);
-        title.setTranslateY(-Ywin/2.3);
+        title.setTranslateY(-Ywin/2.12);
 
         // Buttons
-        Button ReturnB = new Button("Return");
-        ReturnB.setTranslateX(-Xwin/2.3);
-        ReturnB.setTranslateY(Ywin/2.3);
+        Button Logout = new Button("Sign out");
+        Logout.setTranslateX(Xwin/2.3);
+        Logout.setTranslateY(Ywin/2.3);
 
         //Images
         Image icon = new Image("Icon.png");
 
         //Layout
         StackPane root = new StackPane();
-        root.getChildren().add(title);
-        root.getChildren().add(ReturnB);
 
-        TextArea textBox= new TextArea();
-        textBox.setPrefSize(175, 175);
-        textBox.setText(Jobs);
-        textBox.setEditable(false);
-        textBox.setWrapText(true);
-        textBox.setTranslateX(Xwin/45);
-        textBox.setTranslateY(Ywin/9.5);
+
+        TableView JobTable = new TableView();
+        TableColumn ID = new TableColumn("ID");
+        TableColumn From = new TableColumn("From");
+        TableColumn To = new TableColumn("To");
+        TableColumn Paid = new TableColumn("Paid");
+        TableColumn Status = new TableColumn("Status");
+        TableColumn Notes = new TableColumn("Notes");
+        JobTable.getColumns().addAll(ID, From, To, Paid, Status, Notes);
+
+        JobTable.setPrefSize(600, 550);
+        JobTable.setEditable(false);
+        JobTable.setTranslateX(Xwin/50);
+        JobTable.setTranslateY(Ywin/20);
 
         ScrollPane scroll = new ScrollPane();
 
-        scroll.setContent(textBox);
-        root.getChildren().add(scroll);
-
+        scroll.setContent(JobTable);
+        root.getChildren().addAll(scroll, Logout, title);
         //Scenes
-        Scene scene = new Scene(root, Xwin, Ywin);
+        Scene driverJobList = new Scene(root, Xwin, Ywin);
 
         title.toFront();
-        ReturnB.toFront();
+        Logout.toFront();
 
         //Primary Stage
-        Stage.setResizable(false);
-        Stage.getIcons().add(icon);
-        Stage.setScene(scene);
-        Stage.setTitle("Fleet Management System");
-        Stage.show();
+        primaryStage.setResizable(false);
+        primaryStage.getIcons().add(icon);
+        primaryStage.setScene(driverJobList);
+        primaryStage.setTitle("Fleet Management System");
+        primaryStage.show();
 
-        ReturnB.setOnAction(new EventHandler<ActionEvent>()
+        Logout.setOnAction(new EventHandler<ActionEvent>()
         {
             public void handle(ActionEvent event) {
 
-                System.out.println("Upload Hit");
-            }});
+                primaryStage.close();
+                start(primaryStage);
+
+
+            }
+        });
+
+    }
+    public void start(Stage StartStage) {
+
+        TextField username = new TextField();
+        username.setPrefHeight(25);
+        username.setPrefWidth(50);
+
+        StackPane root = new StackPane();
+        root.getChildren().addAll(username);
+        Scene Scenelog = new Scene(root, 400, 200);
+        StartStage.setScene(Scenelog);
+        StartStage.setResizable(false);
+        StartStage.setTitle("Sign In");
+        StartStage.show();
+
+
 
     }
 
@@ -87,7 +107,5 @@ public class DriverGUI extends Application {
         launch(args);
 
     }
-
-
 
 }
