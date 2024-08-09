@@ -14,8 +14,6 @@ import java.util.Date;
 
 public class DriverGUI extends Application {
 
-
-    @Override
     public void start(Stage Stage){
 
         JobDatabase data = new JobDatabase();
