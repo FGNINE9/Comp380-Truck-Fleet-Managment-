@@ -43,7 +43,7 @@ public class JobDatabase
      * Writes to the database to update it in case you close the file.<br>
      * Will return false and not input the job if another job exists with the same job ID number
      * @param newJob the GUIs.Job to be added into the database
-     * @return boolean returns true if the method worked
+     * @return boolean returns true if the method worked<br> returns false if there exists a job in the jobDatabase that shares the same ID number or if it contains a pipe anywhere
      */
     public boolean addJob(Job newJob)
     {
@@ -56,8 +56,7 @@ public class JobDatabase
             return false;
         }
 
-
-        //look to see if the jobslist already contains a job with the ID number
+        //look to see if the jobsList already contains a job with the ID number
         for(int i=0; i<jobList.size(); i++)
         {
             if(jobList.get(i).getID() == newJobID)
@@ -65,8 +64,6 @@ public class JobDatabase
             System.out.println("JOBDATABASE ERROR: job already exists with that job ID number");
             return false;
             }
-
-
 
         }//for end
 
