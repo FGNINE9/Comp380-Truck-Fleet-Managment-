@@ -42,13 +42,20 @@ public class JobDatabase
      * Method to add a job into the database.<br>
      * Writes to the database to update it in case you close the file.<br>
      * Will return false and not input the job if another job exists with the same job ID number
-     * @param job the GUIs.Job to be added into the database
+     * @param newJob the GUIs.Job to be added into the database
      * @return boolean returns true if the method worked
      */
-    public boolean addJob(Job job)
+    public boolean addJob(Job newJob)
     {
-        int newJobID = job.getID();
-        int failflag =0;
+        int newJobID = newJob.getID();
+
+        //check to see if the new job contains a pipe, which would break the database
+        if(newJob.printJob().contains("|"))
+        {
+            System.out.println("JOBDATABASE ERROR: job contains a \"|\" which is not allowed");
+            return false;
+        }
+
 
         //look to see if the jobslist already contains a job with the ID number
         for(int i=0; i<jobList.size(); i++)
@@ -58,10 +65,14 @@ public class JobDatabase
             System.out.println("JOBDATABASE ERROR: job already exists with that job ID number");
             return false;
             }
-        }
-        System.out.println("ADDING JOB  "+job.getID());
+
+
+
+        }//for end
+
+        System.out.println("ADDING JOB  "+newJob.getID());
         //victory state
-        jobList.add(job);
+        jobList.add(newJob);
         writeDatabase();
         return true;
     }
@@ -181,7 +192,6 @@ public class JobDatabase
             {
                 line = br.readLine();
                 String[] readJob = line.split("\\|");
-               // String[] readJob = line.split(",(?=([^\"]*\"[^\"]*\")*[^\"]*$)");
 
                 //remove the whitespace that keeps getting tacked on
                 for(int i=0;i<readJob.length;i++)
