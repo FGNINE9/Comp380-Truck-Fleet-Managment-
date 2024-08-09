@@ -9,12 +9,10 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
-import java.util.Date;
-
 
 public class DriverGUI extends Application {
 
-    public void start(Stage Stage){
+    public void Driver(Stage primaryStage){
 
         JobDatabase data = new JobDatabase();
 
@@ -32,9 +30,9 @@ public class DriverGUI extends Application {
         title.setTranslateY(-Ywin/2.12);
 
         // Buttons
-        Button returnButton = new Button("Return");
-        returnButton.setTranslateX(Xwin/2.3);
-        returnButton.setTranslateY(Ywin/2.3);
+        Button Logout = new Button("Sign out");
+        Logout.setTranslateX(Xwin/2.3);
+        Logout.setTranslateY(Ywin/2.3);
 
         //Images
         Image icon = new Image("Icon.png");
@@ -60,26 +58,47 @@ public class DriverGUI extends Application {
         ScrollPane scroll = new ScrollPane();
 
         scroll.setContent(JobTable);
-        root.getChildren().addAll(scroll, returnButton, title);
+        root.getChildren().addAll(scroll, Logout, title);
         //Scenes
         Scene driverJobList = new Scene(root, Xwin, Ywin);
 
         title.toFront();
-        returnButton.toFront();
+        Logout.toFront();
 
         //Primary Stage
-        Stage.setResizable(false);
-        Stage.getIcons().add(icon);
-        Stage.setScene(driverJobList);
-        Stage.setTitle("Fleet Management System");
-        Stage.show();
+        primaryStage.setResizable(false);
+        primaryStage.getIcons().add(icon);
+        primaryStage.setScene(driverJobList);
+        primaryStage.setTitle("Fleet Management System");
+        primaryStage.show();
 
-        returnButton.setOnAction(new EventHandler<ActionEvent>()
+        Logout.setOnAction(new EventHandler<ActionEvent>()
         {
             public void handle(ActionEvent event) {
 
-                System.out.println("Upload Hit");
-            }});
+                primaryStage.close();
+                start(primaryStage);
+
+
+            }
+        });
+
+    }
+    public void start(Stage StartStage) {
+
+        TextField username = new TextField();
+        username.setPrefHeight(25);
+        username.setPrefWidth(50);
+
+        StackPane root = new StackPane();
+        root.getChildren().addAll(username);
+        Scene Scenelog = new Scene(root, 400, 200);
+        StartStage.setScene(Scenelog);
+        StartStage.setResizable(false);
+        StartStage.setTitle("Sign In");
+        StartStage.show();
+
+
 
     }
 
@@ -88,7 +107,5 @@ public class DriverGUI extends Application {
         launch(args);
 
     }
-
-
 
 }
