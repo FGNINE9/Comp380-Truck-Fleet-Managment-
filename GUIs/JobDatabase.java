@@ -180,14 +180,14 @@ public class JobDatabase
             while(br.ready())
             {
                 line = br.readLine();
-                String[] readJob = line.split(",");
+                String[] readJob = line.split("\\|");
+               // String[] readJob = line.split(",(?=([^\"]*\"[^\"]*\")*[^\"]*$)");
 
                 //remove the whitespace that keeps getting tacked on
                 for(int i=0;i<readJob.length;i++)
                 {
                     readJob[i] = readJob[i].trim();
                 }
-
                 this.addJob(new Job(readJob));
 
             }//while end

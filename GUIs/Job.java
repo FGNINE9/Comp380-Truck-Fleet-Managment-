@@ -135,14 +135,14 @@ public class Job
 	 */
 	public String logJob()
 	{
-		return(ID +", " + startLocation
-				  +", " + endLocation
-				  +", " + paid
-				  +", " + status
-				  +", " + completionTime
-				  +", "+truckerID
-				  +", " + jobHours
-				  +", " + notes+"\n");
+		return(ID +"| " + startLocation
+				  +"| " + endLocation
+				  +"| " + paid
+				  +"| " + status
+				  +"| " + completionTime
+				  +"| "+truckerID
+				  +"| " + jobHours
+				  +"| " + notes+"\n");
 	}
 
 
