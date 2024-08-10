@@ -6,11 +6,19 @@ import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 
 public class DriverGUI extends Application {
+
+    private String UserName = "UserTest";
+    private String Password = "PasswordTest";
+
+    //Images
+    Image icon = new Image("Icon.png");
 
     public void Driver(Stage primaryStage){
 
@@ -34,8 +42,7 @@ public class DriverGUI extends Application {
         Logout.setTranslateX(Xwin/2.3);
         Logout.setTranslateY(Ywin/2.3);
 
-        //Images
-        Image icon = new Image("Icon.png");
+
 
         //Layout
         StackPane root = new StackPane();
@@ -86,17 +93,56 @@ public class DriverGUI extends Application {
     }
     public void start(Stage StartStage) {
 
-        TextField username = new TextField();
-        username.setPrefHeight(25);
-        username.setPrefWidth(50);
+        Button SignInButton = new Button("Sign In!");
+        SignInButton.setTranslateY(50);
 
-        StackPane root = new StackPane();
-        root.getChildren().addAll(username);
-        Scene Scenelog = new Scene(root, 400, 200);
+
+        Label Title = new Label("Sign In!");
+        Title.setTranslateY(-75);
+        Title.setFont(Font.font("Calibri", 20));
+
+        Label UserNameLabel = new Label("User Name: ");
+        UserNameLabel.setTranslateX(-140);
+        UserNameLabel.setTranslateY(-25);
+        UserNameLabel.setFont(Font.font("Calibri", 15));
+
+        TextField userName = new TextField();
+        userName.setPrefHeight(25);
+        userName.setMaxWidth(200);
+        userName.setTranslateY(-25);
+
+        Label PasswordLabel = new Label("Password: ");
+        PasswordLabel.setTranslateX(-137);
+        PasswordLabel.setTranslateY(10);
+        PasswordLabel.setFont(Font.font("Calibri", 15));
+
+        PasswordField password = new PasswordField();
+        password.setPrefHeight(25);
+        password.setMaxWidth(200);
+        password.setTranslateY(10);
+
+        SignInButton.setOnMouseClicked( new EventHandler<MouseEvent>() {
+
+            public void handle(MouseEvent event) {
+
+                if (userName.getText().equals(UserName) && password.getText().equals(Password)){
+                    System.out.println("Inside");
+                    StartStage.close();
+                    Driver(StartStage);
+                }
+            }
+
+        });
+
+        StackPane log = new StackPane();
+        log.getChildren().addAll(userName,password,Title,UserNameLabel, PasswordLabel, SignInButton);
+        Scene Scenelog = new Scene(log, 400, 200);
         StartStage.setScene(Scenelog);
+        StartStage.getIcons().add(icon);
         StartStage.setResizable(false);
         StartStage.setTitle("Sign In");
         StartStage.show();
+        System.out.println(userName.getLayoutBounds().getWidth());
 
 
 
@@ -104,6 +150,7 @@ public class DriverGUI extends Application {
 
 
     public static void main(String[] args) {
+
         launch(args);
 
     }
