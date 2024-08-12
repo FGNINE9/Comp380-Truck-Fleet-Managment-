@@ -343,3 +343,51 @@ class JobCompletionTimeComparator implements java.util.Comparator<Job>
 		return a.getCompletionTime().compareTo(b.getCompletionTime());
 	}
 }
+
+/**
+ * Comparator for sorting jobs by start location
+ */
+class JobStartLocationComparator implements java.util.Comparator<Job>
+{
+	@Override
+	public int compare(Job a, Job b)
+	{
+		return a.getStartLocation().compareTo(b.getStartLocation());
+	}
+}
+
+/**
+ * Comparator for sorting jobs by end location
+ */
+class JobEndLocationComparator implements java.util.Comparator<Job>
+{
+	@Override
+	public int compare(Job a, Job b)
+	{
+		return a.getEndLocation().compareTo(b.getEndLocation());
+	}
+}
+
+/**
+ * Comparator for sorting jobs by paid
+ */
+class JobPaidComparator implements java.util.Comparator<Job>
+{
+	@Override
+	public int compare(Job a, Job b)
+	{
+		return Boolean.compare(a.getPaid(), b.getPaid());
+	}
+}
+
+/**
+ * Comparator for sorting jobs by paid
+ */
+class JobStatusComparator implements java.util.Comparator<Job>
+{
+	@Override
+	public int compare(Job a, Job b)
+	{
+		return a.getStatus().compareTo(b.getStatus());
+	}
+}
