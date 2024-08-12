@@ -236,6 +236,63 @@ public class JobDatabase
         return output;
     }
 
+
+    /**
+     * Method used to get the list of jobs in the database ordered by startLocation
+     * @return a sorted ArrayList of jobs
+     */
+    public ArrayList<Job> getJobListSortedByStartingLocation()
+    {
+        ArrayList<Job> output = jobList;
+
+        output.sort(new JobStartLocationComparator());
+
+        return output;
+    }
+
+
+    /**
+     * Method used to get the list of jobs in the database ordered by endLocation
+     * @return a sorted ArrayList of jobs
+     */
+    public ArrayList<Job> getJobListSortedByEndLocation()
+    {
+        ArrayList<Job> output = jobList;
+
+        output.sort(new JobEndLocationComparator());
+
+        return output;
+    }
+
+
+    /**
+     * Method used to get the list of jobs in the database ordered by endLocation
+     * @return a sorted ArrayList of jobs
+     */
+    public ArrayList<Job> getJobListPaid()
+    {
+        ArrayList<Job> output = jobList;
+
+        output.sort(new JobPaidComparator());
+
+        return output;
+    }
+
+    /**
+     * Method used to get the list of jobs in the database ordered by endLocation
+     * @return a sorted ArrayList of jobs
+     */
+    public ArrayList<Job> getJobListStatus()
+    {
+        ArrayList<Job> output = jobList;
+
+        output.sort(new JobStatusComparator());
+
+        return output;
+    }
+
+
+
 }
 
 
