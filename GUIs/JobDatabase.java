@@ -57,14 +57,13 @@ public class JobDatabase
         }
 
         //look to see if the jobsList already contains a job with the ID number
-        for(int i=0; i<jobList.size(); i++)
+        for (Job job : jobList)
         {
-            if(jobList.get(i).getID() == newJobID)
+            if (job.getID() == newJobID)
             {
-            System.out.println("JOBDATABASE ERROR: job already exists with that job ID number");
-            return false;
+                System.out.println("JOBDATABASE ERROR: job already exists with that job ID number");
+                return false;
             }
-
         }//for end
 
         System.out.println("ADDING JOB  "+newJob.getID());
@@ -104,12 +103,11 @@ public class JobDatabase
      */
     public String printDatabase()
     {
-        String output ="+++++++++++++++++++++++"
-                      +"\n  Printing Database\n\n";
+        String output ="+++++++++++++++++++++++\n  Printing Database\n\n";
 
-        for(int i=0;i<jobList.size();i++)
+        for (Job job : jobList)
         {
-            output += jobList.get(i).printJob() + "\n\n";
+            output += job.printJob() + "\n\n";
         }
 
         output +="+++++++++++++++++++++++";
@@ -125,9 +123,9 @@ public class JobDatabase
     {
         String output ="";
 
-        for(int i=0;i<jobList.size();i++)
+        for (Job job : jobList)
         {
-            output += jobList.get(i).logJob()+"\n";
+            output += job.logJob() + "\n";
         }
 
 
@@ -151,9 +149,9 @@ public class JobDatabase
             BufferedWriter writer = null;
             writer = new BufferedWriter(new FileWriter(target));
 
-            for(int i=0;i<jobList.size();i++)
+            for (Job job : jobList)
             {
-                writer.write(jobList.get(i).logJob());
+                writer.write(job.logJob());
             }
 
             writer.close();
@@ -183,7 +181,7 @@ public class JobDatabase
             FileReader fileReader = new FileReader(target);
             BufferedReader br = new BufferedReader(fileReader);
 
-            String line = "";
+            String line;
 
             while(br.ready())
             {
