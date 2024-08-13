@@ -7,12 +7,12 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 
@@ -29,11 +29,12 @@ public class DriverGUI extends Application {
 
     /**
      * Is called to display the Driver job list after login
-     * @param primaryStage
+     * @param primaryStage Stage where the Driver GUI will be set
+     * @author Fabian Garcia
      */
     public void Driver(Stage primaryStage){
 
-        double Xwin = 1200;
+        double Xwin = 1000;
         double Ywin = 600;
         String Jobs = GetJob.printJob();
 
@@ -43,15 +44,18 @@ public class DriverGUI extends Application {
         title.setTranslateX(-Xwin/2.3);
         title.setTranslateY(-Ywin/2.12);
 
-
+        //Buttons and setup
         Button Logout = new Button("Sign out");
         Logout.setTranslateX(Xwin/2.3);
         Logout.setTranslateY(Ywin/2.3);
 
+        Button StartJob = new Button("Start Job");
+        StartJob.setTranslateX(Xwin/2.3);
+        StartJob.setTranslateY(Ywin/3);
+
 
         StackPane root = new StackPane();
 
-        Job adddata = new Job(2313, "Las Vegas", "Los Angeles", false, "Not Assigned", new Date(), 123, 12, "No Notes");
 
         TableView JobTable = new TableView();
 
@@ -65,29 +69,13 @@ public class DriverGUI extends Application {
         TableColumn End = new TableColumn("To");
         End.setCellValueFactory(new PropertyValueFactory<TableColumn, String>("endLocation"));
 
-        TableColumn Paid = new TableColumn("Paid");
-        Paid.setCellValueFactory(new PropertyValueFactory<TableColumn, Boolean>("paid"));
-
-        TableColumn Status = new TableColumn("Status");
-        Status.setCellValueFactory(new PropertyValueFactory<TableColumn, String>("status"));
-
-        TableColumn Date = new TableColumn("Date Completed");
-        Date.setCellValueFactory(new PropertyValueFactory<TableColumn, Date>("completionTime"));
-
-        TableColumn TruckID = new TableColumn("TruckID");
-        TruckID.setCellValueFactory(new PropertyValueFactory<TableColumn, Integer>("truckerID"));
-
-        TableColumn JobHours = new TableColumn("Job Hours");
-        JobHours.setCellValueFactory(new PropertyValueFactory<TableColumn, Integer>("jobHours"));
 
         TableColumn Notes = new TableColumn("Notes");
         Notes.setCellValueFactory(new PropertyValueFactory<TableColumn, String>("notes"));
 
-        JobTable.getColumns().addAll(ID, Start, End, Paid,  Status, Date, TruckID, JobHours, Notes);
-        JobTable.getItems().add(adddata);
-
-        
-        JobTable.setPrefSize(1000, 550);
+        JobTable.getColumns().addAll(ID, Start, End, Notes);
+        jobToTable(JobTable);
+        JobTable.setPrefSize(365, 550);
         JobTable.setEditable(false);
         JobTable.setTranslateX(Xwin/50);
         JobTable.setTranslateY(Ywin/20);
@@ -95,7 +83,7 @@ public class DriverGUI extends Application {
         ScrollPane scroll = new ScrollPane();
 
         scroll.setContent(JobTable);
-        root.getChildren().addAll(scroll, Logout, title);
+        root.getChildren().addAll(scroll, Logout, title, StartJob);
         //Scenes
         Scene driverJobList = new Scene(root, Xwin, Ywin);
 
@@ -125,7 +113,8 @@ public class DriverGUI extends Application {
 
     /**
      * Start up for program where the user logs in
-     * @param StartStage
+     * @param StartStage Stage where the Log in GUI will be set
+     * @author Fabian Garcia
      */
     public void start(Stage StartStage) {
 
@@ -178,9 +167,34 @@ public class DriverGUI extends Application {
         StartStage.setResizable(false);
         StartStage.setTitle("Sign In");
         StartStage.show();
-        System.out.println(userName.getLayoutBounds().getWidth());
 
 
+
+    }
+
+    /**
+     * This method helps add the Jobs to a tableview for the Driver GUI
+     * @param table Table that jobs will be added to
+     * @author Fabian Garcia
+     */
+    public void jobToTable(TableView table ){
+        int counter = 0;
+        int ID;
+        String startLocation;
+        String endLocation;
+        String status;
+        String notes;
+        ArrayList<Job> joblist = data.getJobListSortedByID();
+        do{
+            ID = data.getJobListSortedByID().get(counter).getID();
+            startLocation = data.getJobListSortedByID().get(counter).getStartLocation();
+            endLocation = data.getJobListSortedByID().get(counter).getEndLocation();
+            status = data.getJobListSortedByID().get(counter).getStatus();
+            notes = data.getJobListSortedByID().get(counter).getNotes();
+            Job adding = new Job(ID, startLocation, endLocation, status, notes);
+            table.getItems().add(adding);
+            counter++;
+        }while(data.getJobListSortedByID().size() != counter);
 
     }
 

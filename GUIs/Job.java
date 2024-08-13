@@ -110,6 +110,21 @@ public class Job
 		this.notes = in[8];
 	}
 
+	/**
+	 * Contructor for adding to list with only the necessary data
+	 * @param ID
+	 * @param startLocation
+	 * @param endLocation
+	 * @param status
+	 * @param notes
+	 */
+	public Job(int ID, String startLocation, String endLocation, String status, String notes) {
+		this.ID = ID;
+		this.startLocation = startLocation;
+		this.endLocation = endLocation;
+		this.notes = notes;
+	}
+
 
 	/**
 	 * Returns a Job in a string, expanded view
