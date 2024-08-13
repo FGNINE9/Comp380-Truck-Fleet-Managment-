@@ -5,29 +5,35 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
+import java.util.Date;
+
 
 public class DriverGUI extends Application {
 
-    private String UserName = "UserTest";
-    private String Password = "PasswordTest";
+    JobDatabase data = new JobDatabase();
+    Job GetJob = new Job();
 
-    //Images
+    private String UserName = "U";
+    private String Password = "P";
+
+    //Image icon for Stages
     Image icon = new Image("Icon.png");
 
+    /**
+     * Is called to display the Driver job list after login
+     * @param primaryStage
+     */
     public void Driver(Stage primaryStage){
 
-        JobDatabase data = new JobDatabase();
-
-        Job GetJob = new Job();
-
-
-        double Xwin = 800;
+        double Xwin = 1200;
         double Ywin = 600;
         String Jobs = GetJob.printJob();
 
@@ -37,27 +43,51 @@ public class DriverGUI extends Application {
         title.setTranslateX(-Xwin/2.3);
         title.setTranslateY(-Ywin/2.12);
 
-        // Buttons
+
         Button Logout = new Button("Sign out");
         Logout.setTranslateX(Xwin/2.3);
         Logout.setTranslateY(Ywin/2.3);
 
 
-
-        //Layout
         StackPane root = new StackPane();
 
+        Job adddata = new Job(2313, "Las Vegas", "Los Angeles", false, "Not Assigned", new Date(), 123, 12, "No Notes");
 
         TableView JobTable = new TableView();
-        TableColumn ID = new TableColumn("ID");
-        TableColumn From = new TableColumn("From");
-        TableColumn To = new TableColumn("To");
-        TableColumn Paid = new TableColumn("Paid");
-        TableColumn Status = new TableColumn("Status");
-        TableColumn Notes = new TableColumn("Notes");
-        JobTable.getColumns().addAll(ID, From, To, Paid, Status, Notes);
 
-        JobTable.setPrefSize(600, 550);
+        TableColumn ID = new TableColumn("ID");
+        ID.setCellValueFactory(new PropertyValueFactory<TableColumn, Integer>("ID"));
+
+        TableColumn Start = new TableColumn("Start");
+        Start.setCellValueFactory(new PropertyValueFactory<TableColumn, String>("startLocation"));
+
+
+        TableColumn End = new TableColumn("To");
+        End.setCellValueFactory(new PropertyValueFactory<TableColumn, String>("endLocation"));
+
+        TableColumn Paid = new TableColumn("Paid");
+        Paid.setCellValueFactory(new PropertyValueFactory<TableColumn, Boolean>("paid"));
+
+        TableColumn Status = new TableColumn("Status");
+        Status.setCellValueFactory(new PropertyValueFactory<TableColumn, String>("status"));
+
+        TableColumn Date = new TableColumn("Date Completed");
+        Date.setCellValueFactory(new PropertyValueFactory<TableColumn, Date>("completionTime"));
+
+        TableColumn TruckID = new TableColumn("TruckID");
+        TruckID.setCellValueFactory(new PropertyValueFactory<TableColumn, Integer>("truckerID"));
+
+        TableColumn JobHours = new TableColumn("Job Hours");
+        JobHours.setCellValueFactory(new PropertyValueFactory<TableColumn, Integer>("jobHours"));
+
+        TableColumn Notes = new TableColumn("Notes");
+        Notes.setCellValueFactory(new PropertyValueFactory<TableColumn, String>("notes"));
+
+        JobTable.getColumns().addAll(ID, Start, End, Paid,  Status, Date, TruckID, JobHours, Notes);
+        JobTable.getItems().add(adddata);
+
+        
+        JobTable.setPrefSize(1000, 550);
         JobTable.setEditable(false);
         JobTable.setTranslateX(Xwin/50);
         JobTable.setTranslateY(Ywin/20);
@@ -91,6 +121,12 @@ public class DriverGUI extends Application {
         });
 
     }
+
+
+    /**
+     * Start up for program where the user logs in
+     * @param StartStage
+     */
     public void start(Stage StartStage) {
 
         Button SignInButton = new Button("Sign In!");
