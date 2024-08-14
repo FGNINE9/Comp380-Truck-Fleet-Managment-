@@ -117,7 +117,6 @@ public class DriverGUI extends Application {
     public void Driver2(Stage primaryStage){
         double Xwin = 1000;
         double Ywin = 600;
-        String Jobs = GetJob.printJob();
 
 
         //Labels
