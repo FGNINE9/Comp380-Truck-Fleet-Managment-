@@ -21,10 +21,10 @@ public class DriverGUI extends Application {
     JobDatabase data = new JobDatabase();
     Job GetJob = new Job();
 
-    private String UserName = "U";
-    private String Password = "P";
-    private String UserNameAdmin = "A";
-    private String PasswordAdmin = "AP";
+    private final String UserName = "User";
+    private final String Password = "Pass";
+    private final String UserNameAdmin = "Admin";
+    private final String PasswordAdmin = "AdminPass";
 
     //Image icon for Stages
     Image icon = new Image("Icon.png");
