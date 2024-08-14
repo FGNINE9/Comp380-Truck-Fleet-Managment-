@@ -13,16 +13,16 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 import java.util.ArrayList;
-import java.util.Date;
 
 
 public class DriverGUI extends Application {
 
-    JobDatabase data = new JobDatabase();
-    Job GetJob = new Job();
 
-    private String UserName = "U";
-    private String Password = "P";
+    JobDatabase data = new JobDatabase();
+
+
+    private final String UserName = "User";
+    private final String Password = "Pass";
 
     //Image icon for Stages
     Image icon = new Image("Icon.png");
@@ -36,7 +36,6 @@ public class DriverGUI extends Application {
 
         double Xwin = 1000;
         double Ywin = 600;
-        String Jobs = GetJob.printJob();
 
 
         //Labels
@@ -53,6 +52,7 @@ public class DriverGUI extends Application {
         StartJob.setTranslateX(Xwin/2.3);
         StartJob.setTranslateY(Ywin/3);
 
+        toNotesFormat("He will he she");
 
         StackPane root = new StackPane();
 
@@ -151,7 +151,6 @@ public class DriverGUI extends Application {
             public void handle(MouseEvent event) {
 
                 if (userName.getText().equals(UserName) && password.getText().equals(Password)){
-                    System.out.println("Inside");
                     StartStage.close();
                     Driver(StartStage);
                 }
@@ -190,12 +189,41 @@ public class DriverGUI extends Application {
             startLocation = data.getJobListSortedByID().get(counter).getStartLocation();
             endLocation = data.getJobListSortedByID().get(counter).getEndLocation();
             status = data.getJobListSortedByID().get(counter).getStatus();
-            notes = data.getJobListSortedByID().get(counter).getNotes();
+            notes = toNotesFormat(data.getJobListSortedByID().get(counter).getNotes());
+
             Job adding = new Job(ID, startLocation, endLocation, status, notes);
             table.getItems().add(adding);
             counter++;
         }while(data.getJobListSortedByID().size() != counter);
 
+    }
+
+    public String toNotesFormat(String note){
+        int counter = 0;
+        int prev = 0, counter2 = 0;
+        String[] splitnote = note.split(" ");
+        note = "";
+        try {
+            while (counter < splitnote.length) {
+                if ( counter < splitnote.length && prev  + splitnote[counter].length() + 1 < 25) {
+                    prev = prev  + splitnote[counter].length() + 1;
+                    counter++;
+                } else {
+
+                    while (counter2 < counter){
+
+                        note = note + splitnote[counter2] + " ";
+                        counter2++;
+
+                    }
+                    note = note + "\n";
+                    prev = 0;
+                }
+
+                if(counter == splitnote.length + 1){break;}
+            }
+        }catch (Exception e){return "Error Loading String for Sizing!";}
+        return note;
     }
 
 
