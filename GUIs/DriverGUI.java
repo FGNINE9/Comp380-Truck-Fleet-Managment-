@@ -77,7 +77,7 @@ public class DriverGUI extends Application {
 
         JobTable.getColumns().addAll(ID, Start, End, Notes);
         jobToTable(JobTable);
-        JobTable.setPrefSize(377, 550);
+        JobTable.setPrefSize(400, 550);
         JobTable.setEditable(false);
         JobTable.setTranslateX(Xwin/50);
         JobTable.setTranslateY(Ywin/20);
