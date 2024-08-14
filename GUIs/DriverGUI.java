@@ -22,6 +22,7 @@ public class DriverGUI extends Application {
 
 
     JobDatabase data = new JobDatabase();
+    Job GetJob = new Job();
 
 
     private final String UserName = "User";
