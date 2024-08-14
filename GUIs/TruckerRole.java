@@ -4,7 +4,9 @@ import java.util.Date;
 import java.util.List;
 
 /**
-TruckerRole class provides methods to view trucker's current jobs, input Job Data, and generate weekly summary.
+TruckerRole class provides methods to view trucker's current jobs,
+ input Job Data, and generate weekly summary.
+ @author Naery Kouyoumjian
  */
 public class TruckerRole {
 
@@ -110,7 +112,6 @@ public class TruckerRole {
         return "Weekly Summary:\n" +
                 "Total Jobs this week: " + ttlJobs + ".\n" +
                 "Total Hours this week: " + ttlHours + ".\n";
-
     }
 
 
@@ -118,7 +119,7 @@ public class TruckerRole {
 
     /**
      * Gets trucker's ID number
-     * @return trucker's ID number
+     * @return int returns trucker's ID number
      */
     public int getIDNumber() {
         return IDNumber;
@@ -135,7 +136,7 @@ public class TruckerRole {
 
     /**
      * Gets the trucker's password
-     * @return Trucker's password
+     * @return String returns Trucker's password
      */
     public String getPassword() {
         return password;
@@ -151,7 +152,7 @@ public class TruckerRole {
 
     /**
      * Gets the trucker's name
-     * @return Trucker's name
+     * @return string returns Trucker's name
      */
     public String getName() {
         return name;
