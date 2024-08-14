@@ -14,7 +14,10 @@ import javafx.stage.Stage;
 
 import java.util.ArrayList;
 
-
+/**
+ * class that takes care of driver GUI and Login with methods including JobToTable and toNotesFormat
+ * @author Fabian Garcia
+ */
 public class DriverGUI extends Application {
 
 
@@ -30,7 +33,6 @@ public class DriverGUI extends Application {
     /**
      * Is called to display the Driver job list after login
      * @param primaryStage Stage where the Driver GUI will be set
-     * @author Fabian Garcia
      */
     public void Driver(Stage primaryStage){
 
@@ -75,7 +77,7 @@ public class DriverGUI extends Application {
 
         JobTable.getColumns().addAll(ID, Start, End, Notes);
         jobToTable(JobTable);
-        JobTable.setPrefSize(365, 550);
+        JobTable.setPrefSize(377, 550);
         JobTable.setEditable(false);
         JobTable.setTranslateX(Xwin/50);
         JobTable.setTranslateY(Ywin/20);
@@ -114,7 +116,6 @@ public class DriverGUI extends Application {
     /**
      * Start up for program where the user logs in
      * @param StartStage Stage where the Log in GUI will be set
-     * @author Fabian Garcia
      */
     public void start(Stage StartStage) {
 
@@ -174,7 +175,6 @@ public class DriverGUI extends Application {
     /**
      * This method helps add the Jobs to a tableview for the Driver GUI
      * @param table Table that jobs will be added to
-     * @author Fabian Garcia
      */
     public void jobToTable(TableView table ){
         int counter = 0;
