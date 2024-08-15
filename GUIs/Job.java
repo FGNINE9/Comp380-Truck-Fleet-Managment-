@@ -4,7 +4,7 @@ import java.util.Date;
 
 /**
  * Job object, used to create and manipulate jobs
- * @authos Sebastian Borner
+ * @author  Sebastian Borner
  */
 public class Job
 {
@@ -75,6 +75,7 @@ public class Job
 	 * @param endLocation where the GUIs.Job ends
 	 * @param paid whether the job has been paid
 	 * @param status current status of the load
+	 * @param completionTime the date when the job was completed
 	 * @param truckerID ID of the trucker assigned to this GUIs.Job
 	 * @param jobHours amount of hours this GUIs.Job will take to complete
 	 * @param notes any extra information
@@ -112,11 +113,11 @@ public class Job
 
 	/**
 	 * Contructor for adding to list with only the necessary data
-	 * @param ID
-	 * @param startLocation
-	 * @param endLocation
-	 * @param status
-	 * @param notes
+	 * @param ID identification number of the Job
+	 * @param startLocation location where the job starts
+	 * @param endLocation location where the job ends
+	 * @param status current status of the job
+	 * @param notes special notes for the job
 	 */
 	public Job(int ID, String startLocation, String endLocation, String status, String notes) {
 		this.ID = ID;
