@@ -227,28 +227,18 @@ public class DriverGUI extends Application {
         SignInButton.setOnMouseClicked( new EventHandler<MouseEvent>() {
 
             public void handle(MouseEvent event) {
-                TruckerRole truckerRole;
 
                 if (userName.getText().equals(UserName) && password.getText().equals(Password)){
-                    truckerRole = new TruckerRole(1, "Pass", "Driver", false); //driver not admin
                     System.out.println("Driver Inside");
-
+                    StartStage.close();
+                    Driver(StartStage);
                 }
                 else if (userName.getText().equals(UserNameAdmin) && password.getText().equals(PasswordAdmin)){
-                    truckerRole = new TruckerRole(1, "AdminPass", "Admin", true); //user is admin
                     System.out.println("Admin Inside");
-
-                }
-                else {
-                    System.out.println("Wrong Password");
-                    return;
-                }
-
-                StartStage.close();
-                if (truckerRole.isAdmin()){
+                    StartStage.close();
                     Driver2(StartStage);
-                }else{
-                    Driver(StartStage);
+                } else {
+                    System.out.println("Wrong Password");
                 }
             }
 
@@ -262,6 +252,8 @@ public class DriverGUI extends Application {
         StartStage.setResizable(false);
         StartStage.setTitle("Sign In");
         StartStage.show();
+
+
 
     }
 
