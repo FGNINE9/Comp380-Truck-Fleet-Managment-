@@ -135,7 +135,6 @@ public class JobDatabase
 
         jobList.remove(job);
         jobList.add(new Job(jobID, endLocation, newStartLocation, paid, status, completionTime, truckerId, jobHours, notes));
-        writeDatabase();
     }
 
 
@@ -156,8 +155,69 @@ public class JobDatabase
 
         jobList.remove(job);
         jobList.add(new Job(jobID, startLocation, newEndLocation, paid, status, completionTime, truckerId, jobHours, notes));
-        writeDatabase();
     }
+
+
+
+    /**
+     * Updates the paid status of a job
+     * @param job the job to be updated
+     * @param isPaid the updated paid status for the job
+     */
+    public void updatePaidStatus(Job job, boolean isPaid){
+        int jobID = job.getID();
+        String startLocation = job.getStartLocation();
+        String endLocation = job.getEndLocation();
+        String status = job.getStatus();
+        Date completionTime = job.getCompletionTime();
+        int truckerId = job.getTruckerID();
+        int jobHours = job.getJobHours();
+        String notes = job.getNotes();
+
+        jobList.remove(job);
+        jobList.add(new Job(jobID, startLocation, endLocation, isPaid, status, completionTime, truckerId, jobHours, notes));
+    }
+
+
+    /**
+     * Updates the job status
+     * @param job the job to be updated
+     * @param newJobStatus the updated job status for the job
+     */
+    public void updateJobStatus(Job job, String newJobStatus){
+        int jobID = job.getID();
+        String startLocation = job.getStartLocation();
+        String endLocation = job.getEndLocation();
+        Boolean paid = job.getPaid();
+        Date completionTime = job.getCompletionTime();
+        int truckerId = job.getTruckerID();
+        int jobHours = job.getJobHours();
+        String notes = job.getNotes();
+
+        jobList.remove(job);
+        jobList.add(new Job(jobID, startLocation, endLocation, paid, newJobStatus, completionTime, truckerId, jobHours, notes));
+
+    }
+
+    /**
+     * Updates the completion time of a job
+     * @param job the job to be updated
+     * @param newCompletionTime the completion time for the job
+     */
+    public void updateCompletionTime(Job job, Date newCompletionTime){
+        int jobID = job.getID();
+        String startLocation = job.getStartLocation();
+        String endLocation = job.getEndLocation();
+        Boolean paid = job.getPaid();
+        String status = job.getStatus();
+        int truckerId = job.getTruckerID();
+        int jobHours = job.getJobHours();
+        String notes = job.getNotes();
+
+        jobList.remove(job);
+        jobList.add(new Job(jobID, startLocation, endLocation, paid, status, newCompletionTime, truckerId, jobHours, notes));
+    }
+
 
 
     /**
