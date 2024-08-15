@@ -14,6 +14,7 @@ public class TruckerRole {
     private String password;
     private String name;
     private JobDatabase jobDatabase;  //to interact with job data
+    private boolean isAdmin;   //to check if user is driver or admin
 
     /**
      * Default constructor for TruckerRole
@@ -27,15 +28,25 @@ public class TruckerRole {
 
     /**
      * Constructor for TruckerRole with parameters
-     * @param IDNumber
-     * @param password
-     * @param name
+     * @param IDNumber trucker's ID number
+     * @param password trucker's account password
+     * @param name trucker's name
+     * @param isAdmin boolean to check user is admin (true) or a driver (false)
      */
-    public TruckerRole(int IDNumber, String password, String name) {
+    public TruckerRole(int IDNumber, String password, String name, boolean isAdmin) {
         this.IDNumber = IDNumber;
         this.password = password;
         this.name = name;
         this.jobDatabase = new JobDatabase();
+        this.isAdmin = isAdmin;
+    }
+
+    /**
+     * check if trucker is admin
+     * @return true if admin, false if driver
+    */
+    public boolean isAdmin() {
+        return isAdmin;
     }
 
     /**
