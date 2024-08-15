@@ -1,0 +1,1 @@
+typeSearchIndex = [{"p":"GUIs","l":"AdministratorRole"},{"l":"All Classes and Interfaces","u":"allclasses-index.html"},{"p":"GUIs","l":"DriverGUI"},{"p":"GUIs","l":"Job"},{"p":"GUIs","l":"JobDatabase"},{"p":"GUIs","l":"Tickets"},{"p":"GUIs","l":"TruckerRole"}];updateSearchResults();
