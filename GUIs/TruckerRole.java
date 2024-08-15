@@ -58,14 +58,14 @@ public class TruckerRole {
     }
 
     /** Method to input information about a job
-     * @param jobID
-     * @param startLocation
-     * @param endLocation
-     * @param paid
-     * @param status
-     * @param completionTime
-     * @param jobHours
-     * @param notes
+     * @param jobID the job ID
+     * @param startLocation where the GUIs.Job begins
+     * @param endLocation where the GUIs.Job ends
+     * @param paid whether the job has been paid
+     * @param status current status of the load
+     * @param completionTime the date when the job was completed
+     * @param jobHours amount of hours this GUIs.Job will take to complete
+     * @param notes any extra information
      */
     public void inputLoadData(int jobID, String startLocation, String endLocation, boolean paid, String status, Date completionTime, int jobHours, String notes) {
 
@@ -127,7 +127,7 @@ public class TruckerRole {
 
     /**
      * Sets trucker's ID number
-     * @param IDNumber
+     * @param IDNumber id number of this trucker
      */
 
     public void setIDNumber(int IDNumber) {
@@ -144,7 +144,7 @@ public class TruckerRole {
 
     /**
      * Sets trucker's password
-     * @param password
+     * @param password this trucker's password
      */
     public void setPassword(String password) {
         this.password = password;
@@ -160,7 +160,7 @@ public class TruckerRole {
 
     /**
      * Sets the trucker's name
-     * @param name
+     * @param name this trucker's name
      */
     public void setName(String name) {
         this.name = name;
