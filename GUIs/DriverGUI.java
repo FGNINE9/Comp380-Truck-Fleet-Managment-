@@ -27,8 +27,6 @@ public class DriverGUI extends Application {
 
     private final String UserName = "User";
     private final String Password = "Pass";
-    private final String UserNameAdmin = "Admin";
-    private final String PasswordAdmin = "AdminPass";
 
     //Image icon for Stages
     Image icon = new Image("Icon.png");
@@ -114,85 +112,7 @@ public class DriverGUI extends Application {
         });
 
     }
-    /**
-     * Method used to build the GUI for the trucker role
-     * @param primaryStage the stage used in this builder method
-     */
-    public void Driver2(Stage primaryStage){
-        double Xwin = 1000;
-        double Ywin = 600;
 
-
-        //Labels
-        Label title = new Label("Pending Jobs:");
-        title.setTranslateX(-Xwin/2.3);
-        title.setTranslateY(-Ywin/2.12);
-
-        //Buttons and setup
-        Button Logout = new Button("Sign out");
-        Logout.setTranslateX(Xwin/2.3);
-        Logout.setTranslateY(Ywin/2.3);
-
-        Button StartJob = new Button("Start Job");
-        StartJob.setTranslateX(Xwin/2.3);
-        StartJob.setTranslateY(Ywin/3);
-
-
-        StackPane root = new StackPane();
-
-
-        TableView JobTable = new TableView();
-
-        TableColumn ID = new TableColumn("ID");
-        ID.setCellValueFactory(new PropertyValueFactory<TableColumn, Integer>("ID"));
-
-        TableColumn Start = new TableColumn("Start");
-        Start.setCellValueFactory(new PropertyValueFactory<TableColumn, String>("startLocation"));
-
-
-        TableColumn End = new TableColumn("To");
-        End.setCellValueFactory(new PropertyValueFactory<TableColumn, String>("endLocation"));
-
-
-        TableColumn Notes = new TableColumn("Notes");
-        Notes.setCellValueFactory(new PropertyValueFactory<TableColumn, String>("notes"));
-
-        JobTable.getColumns().addAll(ID, Start, End, Notes);
-        jobToTable(JobTable);
-        JobTable.setPrefSize(365, 550);
-        JobTable.setEditable(false);
-        JobTable.setTranslateX(Xwin/50);
-        JobTable.setTranslateY(Ywin/20);
-
-        ScrollPane scroll = new ScrollPane();
-
-        scroll.setContent(JobTable);
-        root.getChildren().addAll(scroll, Logout, title, StartJob);
-        //Scenes
-        Scene driverJobList = new Scene(root, Xwin, Ywin);
-
-        title.toFront();
-        Logout.toFront();
-
-        //Primary Stage
-        primaryStage.setResizable(false);
-        primaryStage.getIcons().add(icon);
-        primaryStage.setScene(driverJobList);
-        primaryStage.setTitle("Fleet Management System");
-        primaryStage.show();
-
-        Logout.setOnAction(new EventHandler<ActionEvent>()
-        {
-            public void handle(ActionEvent event) {
-
-                primaryStage.close();
-                start(primaryStage);
-
-
-            }
-        });
-
-    }
     /**
      * Start up for program where the user logs in
      * @param StartStage Stage where the Log in GUI will be set
@@ -235,11 +155,6 @@ public class DriverGUI extends Application {
                     System.out.println("Driver Inside");
                     StartStage.close();
                     Driver(StartStage);
-                }
-                else if (userName.getText().equals(UserNameAdmin) && password.getText().equals(PasswordAdmin)){
-                    System.out.println("Admin Inside");
-                    StartStage.close();
-                    Driver2(StartStage);
                 } else {
                     System.out.println("Wrong Password");
                 }

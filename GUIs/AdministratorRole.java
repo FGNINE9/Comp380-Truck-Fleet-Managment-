@@ -38,6 +38,7 @@ public class AdministratorRole
 
     /**
      * Method for Editing Employee data
+     *
      */
     public void EditEmployeeData(){
         JobDatabase database = new JobDatabase();
@@ -53,7 +54,10 @@ public class AdministratorRole
          */
         if ("Yes".equals(command)) {
             System.out.println("Select fields to edit ");
-            // edit specific employee fields
+            /**
+             * Add methods to edit certain database fields
+             * Edit database()
+             */
         } else {
             System.out.println("Exiting Menu ");
         }
