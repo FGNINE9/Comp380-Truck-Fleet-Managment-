@@ -201,11 +201,6 @@ public class DriverGUI extends Application {
 
     }
 
-    /**
-     * Method used to split text for the table view
-     * @param note the text you want to split
-     * @return the text in the split form
-     */
     public String toNotesFormat(String note){
         int counter = 0;
         int prev = 0, counter2 = 0;
@@ -234,10 +229,7 @@ public class DriverGUI extends Application {
         return note;
     }
 
-    /**
-     * Main start method, runs the GUI
-     * @param args arguments for main
-     */
+
     public static void main(String[] args) {
 
         launch(args);

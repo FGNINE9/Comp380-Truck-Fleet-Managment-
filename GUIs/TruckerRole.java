@@ -27,9 +27,9 @@ public class TruckerRole {
 
     /**
      * Constructor for TruckerRole with parameters
-     * @param IDNumber ID number for the current trucker role
-     * @param password passowrd for the trucker role
-     * @param name trucker's name
+     * @param IDNumber
+     * @param password
+     * @param name
      */
     public TruckerRole(int IDNumber, String password, String name) {
         this.IDNumber = IDNumber;
