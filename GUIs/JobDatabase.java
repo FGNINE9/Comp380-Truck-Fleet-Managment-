@@ -2,6 +2,7 @@ package GUIs;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Date;
 
 
 /**
@@ -95,6 +96,28 @@ public class JobDatabase
         }
         return false;
     }
+
+    /**
+     * Method used to "start" a job, it sets the status to "In Progress"
+     * @param job
+     */
+    public void startJob(Job job)
+    {
+        int jobID = job.getID();
+        String startLocation = job.getStartLocation();
+        String endLocation = job.getEndLocation();
+        Boolean paid = job.getPaid();
+        //status will be "In Progress"
+        Date completionTime = job.getCompletionTime();
+        int truckerId = job.getTruckerID();
+        int jobHours = job.getJobHours();
+        String notes = job.getNotes();
+
+        jobList.remove(job);
+        jobList.add(new Job(jobID, startLocation, endLocation, paid, "In Progress", completionTime, truckerId, jobHours, notes));
+
+    }
+
 
     /**
      * Prints the database<br>

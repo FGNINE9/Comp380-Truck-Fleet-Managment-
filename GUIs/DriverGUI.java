@@ -22,10 +22,9 @@ public class DriverGUI extends Application {
 
 
     JobDatabase data = new JobDatabase();
-    Job GetJob = new Job();
 
 
-    private final String UserName = "User";
+    private final int LogID = 111;
     private final String Password = "Pass";
     private final String UserNameAdmin = "Admin";
     private final String PasswordAdmin = "AdminPass";
@@ -48,6 +47,9 @@ public class DriverGUI extends Application {
         title.setTranslateX(-Xwin/2.3);
         title.setTranslateY(-Ywin/2.12);
 
+        Label StartJobError = new Label("Complete current job before starting others!");
+        StartJobError.setTranslateX(Ywin/2.12);
+
         //Buttons and setup
         Button Logout = new Button("Sign out");
         Logout.setTranslateX(Xwin/2.3);
@@ -62,16 +64,16 @@ public class DriverGUI extends Application {
         StackPane root = new StackPane();
 
 
-        TableView JobTable = new TableView();
+        TableView<Job> JobTable = new TableView<>();
 
         TableColumn ID = new TableColumn("ID");
         ID.setCellValueFactory(new PropertyValueFactory<TableColumn, Integer>("ID"));
 
-        TableColumn Start = new TableColumn("Start");
+        TableColumn Start = new TableColumn("Origin");
         Start.setCellValueFactory(new PropertyValueFactory<TableColumn, String>("startLocation"));
 
 
-        TableColumn End = new TableColumn("To");
+        TableColumn End = new TableColumn("Drop off");
         End.setCellValueFactory(new PropertyValueFactory<TableColumn, String>("endLocation"));
 
 
@@ -102,6 +104,23 @@ public class DriverGUI extends Application {
         primaryStage.setTitle("Fleet Management System");
         primaryStage.show();
 
+        StartJob.setOnAction(new EventHandler<ActionEvent>() {
+
+            public void handle(ActionEvent actionEvent) {
+               boolean Jobchecked = CheckForJob();
+                String selected = JobTable.getSelectionModel().getSelectedItem().getStatus();
+               if(Jobchecked){
+                   selected = "In Progress";
+                   root.getChildren().add(StartJobError);
+                   JobTable.getItems().clear();
+                   jobToTable(JobTable);
+               }else{
+
+               }
+
+            }
+
+        });
         Logout.setOnAction(new EventHandler<ActionEvent>()
         {
             public void handle(ActionEvent event) {
@@ -115,81 +134,6 @@ public class DriverGUI extends Application {
 
     }
 
-    public void Driver2(Stage primaryStage){
-        double Xwin = 1000;
-        double Ywin = 600;
-
-
-        //Labels
-        Label title = new Label("Pending Jobs:");
-        title.setTranslateX(-Xwin/2.3);
-        title.setTranslateY(-Ywin/2.12);
-
-        //Buttons and setup
-        Button Logout = new Button("Sign out");
-        Logout.setTranslateX(Xwin/2.3);
-        Logout.setTranslateY(Ywin/2.3);
-
-        Button StartJob = new Button("Start Job");
-        StartJob.setTranslateX(Xwin/2.3);
-        StartJob.setTranslateY(Ywin/3);
-
-
-        StackPane root = new StackPane();
-
-
-        TableView JobTable = new TableView();
-
-        TableColumn ID = new TableColumn("ID");
-        ID.setCellValueFactory(new PropertyValueFactory<TableColumn, Integer>("ID"));
-
-        TableColumn Start = new TableColumn("Start");
-        Start.setCellValueFactory(new PropertyValueFactory<TableColumn, String>("startLocation"));
-
-
-        TableColumn End = new TableColumn("To");
-        End.setCellValueFactory(new PropertyValueFactory<TableColumn, String>("endLocation"));
-
-
-        TableColumn Notes = new TableColumn("Notes");
-        Notes.setCellValueFactory(new PropertyValueFactory<TableColumn, String>("notes"));
-
-        JobTable.getColumns().addAll(ID, Start, End, Notes);
-        jobToTable(JobTable);
-        JobTable.setPrefSize(365, 550);
-        JobTable.setEditable(false);
-        JobTable.setTranslateX(Xwin/50);
-        JobTable.setTranslateY(Ywin/20);
-
-        ScrollPane scroll = new ScrollPane();
-
-        scroll.setContent(JobTable);
-        root.getChildren().addAll(scroll, Logout, title, StartJob);
-        //Scenes
-        Scene driverJobList = new Scene(root, Xwin, Ywin);
-
-        title.toFront();
-        Logout.toFront();
-
-        //Primary Stage
-        primaryStage.setResizable(false);
-        primaryStage.getIcons().add(icon);
-        primaryStage.setScene(driverJobList);
-        primaryStage.setTitle("Fleet Management System");
-        primaryStage.show();
-
-        Logout.setOnAction(new EventHandler<ActionEvent>()
-        {
-            public void handle(ActionEvent event) {
-
-                primaryStage.close();
-                start(primaryStage);
-
-
-            }
-        });
-
-    }
     /**
      * Start up for program where the user logs in
      * @param StartStage Stage where the Log in GUI will be set
@@ -227,13 +171,22 @@ public class DriverGUI extends Application {
         SignInButton.setOnMouseClicked( new EventHandler<MouseEvent>() {
 
             public void handle(MouseEvent event) {
+<<<<<<< HEAD
                 TruckerRole truckerRole;
 
                 if (userName.getText().equals(UserName) && password.getText().equals(Password)){
                     truckerRole = new TruckerRole(1, "Pass", "Driver", false); //driver not admin
+||||||| be326f4
+
+                if (userName.getText().equals(UserName) && password.getText().equals(Password)){
+=======
+                int IDEnetered = Integer.parseInt(userName.getText());
+                if (IDEnetered == LogID && password.getText().equals(Password)){
+>>>>>>> ac517473af51ab7c58867ca0966b96b59663f46a
                     System.out.println("Driver Inside");
 
                 }
+<<<<<<< HEAD
                 else if (userName.getText().equals(UserNameAdmin) && password.getText().equals(PasswordAdmin)){
                     truckerRole = new TruckerRole(1, "AdminPass", "Admin", true); //user is admin
                     System.out.println("Admin Inside");
@@ -250,6 +203,16 @@ public class DriverGUI extends Application {
                 }else{
                     Driver(StartStage);
                 }
+||||||| be326f4
+                else if (userName.getText().equals(UserNameAdmin) && password.getText().equals(PasswordAdmin)){
+                    System.out.println("Admin Inside");
+                    StartStage.close();
+                    Driver2(StartStage);
+                } else {
+                    System.out.println("Wrong Password");
+                }
+=======
+>>>>>>> ac517473af51ab7c58867ca0966b96b59663f46a
             }
 
         });
@@ -276,21 +239,30 @@ public class DriverGUI extends Application {
         String endLocation;
         String status;
         String notes;
+        int TruckerID;
         ArrayList<Job> joblist = data.getJobListSortedByID();
         do{
             ID = data.getJobListSortedByID().get(counter).getID();
             startLocation = data.getJobListSortedByID().get(counter).getStartLocation();
             endLocation = data.getJobListSortedByID().get(counter).getEndLocation();
             status = data.getJobListSortedByID().get(counter).getStatus();
+            TruckerID = data.getJobListSortedByID().get(counter).getTruckerID();
             notes = toNotesFormat(data.getJobListSortedByID().get(counter).getNotes());
 
             Job adding = new Job(ID, startLocation, endLocation, status, notes);
-            table.getItems().add(adding);
-            counter++;
+            if(TruckerID == LogID) {
+                table.getItems().add(adding);
+            }
+                counter++;
         }while(data.getJobListSortedByID().size() != counter);
 
     }
 
+    /**
+     * Method used to split text for the table view
+     * @param note the text you want to split
+     * @return the text in the split form
+     */
     public String toNotesFormat(String note){
         int counter = 0;
         int prev = 0, counter2 = 0;
@@ -319,7 +291,24 @@ public class DriverGUI extends Application {
         return note;
     }
 
+    public boolean CheckForJob( ){
+        ArrayList<Job> jobList = data.getJobListStatus();
+        int counter = 0;
 
+        while(jobList.size() > counter){
+            if(jobList.get(counter).getStatus().equals("In Progress") && jobList.get(counter).getTruckerID() == LogID){
+                return true;
+            }
+            counter ++;
+        }
+
+        return false;
+    }
+
+    /**
+     * Main start method, runs the GUI
+     * @param args arguments for main
+     */
     public static void main(String[] args) {
 
         launch(args);
