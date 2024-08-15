@@ -118,6 +118,26 @@ public class JobDatabase
 
     }
 
+    /**
+     * Method that updates the end location of a job
+     * @param job the job to be updated
+     * @param newEndLocation the new end location for the job
+     */
+    public void updateEndLocation(Job job, String newEndLocation){
+        int jobID = job.getID();
+        String startLocation = job.getStartLocation();
+        Boolean paid = job.getPaid();
+        String status = job.getStatus();
+        Date completionTime = job.getCompletionTime();
+        int truckerId = job.getTruckerID();
+        int jobHours = job.getJobHours();
+        String notes = job.getNotes();
+
+        jobList.remove(job);
+        jobList.add(new Job(jobID, startLocation, newEndLocation, paid, status, completionTime, truckerId, jobHours, notes));
+        writeDatabase();
+    }
+
 
     /**
      * Prints the database<br>
