@@ -229,11 +229,4 @@ public class DriverGUI extends Application {
         return note;
     }
 
-
-    public static void main(String[] args) {
-
-        launch(args);
-
-    }
-
 }
