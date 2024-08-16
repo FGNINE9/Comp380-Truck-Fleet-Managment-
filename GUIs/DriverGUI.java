@@ -234,14 +234,4 @@ public class DriverGUI extends Application {
         return note;
     }
 
-    /**
-     * Main start method, runs the GUI
-     * @param args arguments for main
-     */
-    public static void main(String[] args) {
-
-        launch(args);
-
-    }
-
 }
