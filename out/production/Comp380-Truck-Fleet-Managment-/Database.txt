@@ -1,7 +1,7 @@
 100| Los Angeles, CA| Lansing, MI| false| Not Assigned| Fri Feb 10 03:00:00 EST 2023| 222| 12| nothing special that wil take a buillion years to process and will not like thsi
 -1| AWAITING INPUT| t,here| false| nuull| Sun Dec 31 18:57:15 EST 1899| 3| 4| nullthing nothing special that wil take a buillion years to process and will not like
 12| LA| Las Vegas| false| En Ro,ute| Thu Feb 20 03:00:00 EST 2020| 6| 67| load is extremely wide
-13| CSUN| SMC| true| crashed| Wed Oct 11 03:00:00 EDT 2023| 1| 2| smelly and funky and \n contaminents present
+13| CSUN| SMC| true| crashed| Wed Oct 11 03:00:00 EDT 2023| 1| 2| smelly and funky and contaminents present
 15| a| b| true| c| Thu Apr 04 03:00:00 EST 300| 390| 100| asssassasas
 20| rr| ttt| false| unkown| Fri Mar 03 03:00:00 EST 30000| 44| 1| asssas,sasas
 999| the shire| mordor| true| cast into the fire| Fri Aug 09 13:42:45 EDT 2024| 20| 400| dirty hobbitses
