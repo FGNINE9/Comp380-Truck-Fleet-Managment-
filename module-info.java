@@ -6,6 +6,12 @@ module GUIs
     requires javafx.controls;
     requires javafx.graphics;
     requires java.desktop;
+    requires org.junit.jupiter.api;
+
 
     exports GUIs;
+
+
 }
+
+
