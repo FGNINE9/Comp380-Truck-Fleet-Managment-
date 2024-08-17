@@ -13,6 +13,7 @@ public class TruckerRole {
     private int IDNumber;
     private String password;
     private String name;
+    private String role;
     private JobDatabase jobDatabase;  //to interact with job data
 
     /**
@@ -22,6 +23,7 @@ public class TruckerRole {
         IDNumber = -1;
         password = "NOT INPUT";
         name = "DEFAULT";
+        role = "DEFAULT";
         jobDatabase = new JobDatabase();
     }
 
@@ -31,10 +33,11 @@ public class TruckerRole {
      * @param password
      * @param name
      */
-    public TruckerRole(int IDNumber, String password, String name) {
+    public TruckerRole(int IDNumber, String password, String name, String role) {
         this.IDNumber = IDNumber;
         this.password = password;
         this.name = name;
+        this.role = role;
         this.jobDatabase = new JobDatabase();
     }
 
@@ -165,4 +168,18 @@ public class TruckerRole {
     public void setName(String name) {
         this.name = name;
     }
+
+    /**
+     * Returns the role for a designated trucker
+     * @return role of the trucker in String
+     */
+    public String getrole() {
+        return role;
+    }
+
+    /**
+     * Sets the role for a designated trucker
+     * @param role Requires a String of Admin or Driver
+     */
+    public void setrole(String role) {this.role = role;}
 }
