@@ -73,7 +73,7 @@ public class StartGUI extends Application {
         Notes.setCellValueFactory(new PropertyValueFactory<TableColumn, String>("notes"));
 
         JobTable.getColumns().addAll(ID, Start, End, Notes);
-        jobToTable(JobTable , Current.getIDNumber());
+        jobToTable(JobTable);
         JobTable.setPrefSize(500, 550);
         JobTable.setEditable(false);
         JobTable.setTranslateX(Xwin / 50);
