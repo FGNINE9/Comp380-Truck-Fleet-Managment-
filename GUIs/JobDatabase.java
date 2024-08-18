@@ -404,7 +404,7 @@ public class JobDatabase
      * Method used to get the list of jobs in the database ordered by endLocation
      * @return a sorted ArrayList of jobs
      */
-    public ArrayList<Job> getJobListPaid()
+    public ArrayList<Job> getJobListSortedByPaid()
     {
         ArrayList<Job> output = jobList;
 
@@ -417,7 +417,7 @@ public class JobDatabase
      * Method used to get the list of jobs in the database ordered by endLocation
      * @return a sorted ArrayList of jobs
      */
-    public ArrayList<Job> getJobListStatus()
+    public ArrayList<Job> getJobListSortedByStatus()
     {
         ArrayList<Job> output = jobList;
 

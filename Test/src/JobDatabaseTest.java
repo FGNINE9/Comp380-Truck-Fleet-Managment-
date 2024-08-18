@@ -4,12 +4,13 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 
 /**
@@ -46,7 +47,6 @@ class JobDatabaseTest
 
     }
 
-
     /**
      * Test getJob, see if it returns a job
      */
@@ -78,16 +78,11 @@ class JobDatabaseTest
     {
         //add the job that will be removed for the test
         test.addJob(dummyJob);
-
         test.removeJob(115);
 
         //kind of a weird test because adding and removing a job will have the test be the same value
         assertEquals(initialDatabaseLength, test.getJobListSortedByID().size() ,"Job could not be removed");
-
-
-
     }
-
 
     /**
      * Test removeJob by passing the object instead of ID
@@ -97,15 +92,11 @@ class JobDatabaseTest
     {
         //add the job that will be removed for the test
         test.addJob(dummyJob);
-
         test.removeJobJob(dummyJob);
 
         //kind of a weird test because adding and removing a job will have the test be the same value
         assertEquals(initialDatabaseLength, test.getJobListSortedByID().size() ,"Job could not be removed");
-
-
     }
-
 
     /**
      * Test startJob, test to see if the job's status is updated to "In progress"
@@ -118,7 +109,6 @@ class JobDatabaseTest
         test.addJob(dummyJob);
         test.startJob(dummyJob);
 
-
         //find the job in the list
         for(int i =0;i<test.getJobListSortedByID().size();i++)
         {
@@ -127,10 +117,7 @@ class JobDatabaseTest
         }
 
         test.removeJob(115);
-
-
     }
-
 
     /**
      * Test updateStartLocation, test to see if the job's startLocation updated
@@ -155,9 +142,7 @@ class JobDatabaseTest
         assertEquals(startDesired, tester.getStartLocation(), "Job could not have it's startLocation updated");
 
         test.removeJob(115);//dummyJob's ID
-
     }
-
 
     /**
      * Test updateEndLocation, test to see if the job's endLocation updated
@@ -190,7 +175,7 @@ class JobDatabaseTest
     void updatePaidStatus()
     {
 
-        Boolean paidDesired = false;
+        boolean paidDesired = false;
         test.addJob(dummyJob);
         test.updatePaidStatus(dummyJob, paidDesired);
 
@@ -205,7 +190,6 @@ class JobDatabaseTest
         assertEquals(paidDesired, tester.getPaid(), "Job could not have it's paid updated");
 
         test.removeJob(115);
-
     }
 
     /**
@@ -230,7 +214,6 @@ class JobDatabaseTest
         assertEquals(statusDesired, tester.getStatus(), "Job could not have it's status updated");
 
         test.removeJob(115);
-
     }
 
     @Test
@@ -252,7 +235,6 @@ class JobDatabaseTest
         assertEquals(dateDesired, tester.getCompletionTime(), "Job could not have it's completionDate updated");
 
         test.removeJob(115);
-
     }
 
     /**
@@ -273,17 +255,27 @@ class JobDatabaseTest
         assertNotNull(test.logDatabase(), "Nothing was in the database!?!?");
     }
 
+    /**
+     * Tests writeDatabase, should make a file
+     */
     @Test
     void writeDatabase()
     {
+        test.removeJobJob(dummyJob);
+        test.addJob(dummyJob);
 
+        assertTrue(Files.exists(Path.of("Database.txt")),"Database file should exist");
+
+        test.removeJobJob(dummyJob);
     }
 
+    /**
+     * Tests buildDatabaseFromFile, if the jobDatabase exists then it's because it was built from a file
+     */
     @Test
     void buildDatabaseFromFile()
     {
-
-
+        assertNotNull(test,"The database did not build!");
     }
 
     /**
@@ -292,19 +284,16 @@ class JobDatabaseTest
     @Test
     void getJobListSortedByID()
     {
-        Boolean failFlag = true;
+        boolean failFlag = true;
 
         for(int i =0;i<test.getJobListSortedByID().size()-1;i++)
         {
             if(test.getJob(i).getID() > test.getJob(i+1).getID())
                 failFlag = false;
-            System.out.println(failFlag);
         }
 
         assertEquals(true, failFlag, "Database is not sorted correctly!");
-
     }
-
 
     /**
      * Tests getJobListSortedByDate, will test if the returned list has all the jobs sorted by Date correctly
@@ -312,42 +301,93 @@ class JobDatabaseTest
     @Test
     void getJobListSortedByDate()
     {
-        Boolean failFlag = true;
-
-        int fail =0;
+        boolean failFlag = true;
 
         ArrayList<Job> temp = test.getJobListSortedByDate();
 
         for(int i =0;i<temp.size()-1;i++)
         {
-            System.out.println(temp.get(i).getCompletionTime() + " is earlier than?  "+ temp.get(i+1).getCompletionTime());
-            if((temp.get(i).getCompletionTime()).compareTo(temp.get(i + 1).getCompletionTime()) >= 0) {
-
-             System.out.println("inside the if");
-                failFlag = false;
-                fail++;
-            }
-
-                System.out.println(failFlag+" fail= "+fail+"\n");
+            if((temp.get(i).getCompletionTime()).compareTo(temp.get(i + 1).getCompletionTime()) > 0)
+                 failFlag = false;
         }
 
-        assertEquals(true, failFlag, "Database is not sorted correctly!");
-
+        assertTrue(failFlag, "Database is not sorted correctly!");
     }
 
+    /**
+     * Test for getJobListSortedByStartingLocation, will test if the returned list is in order when sorted by start location
+     */
     @Test
-    void getJobListSortedByStartingLocation() {
+    void getJobListSortedByStartingLocation()
+    {
+        boolean failFlag = true;
+
+        ArrayList<Job> temp = test.getJobListSortedByStartingLocation();
+
+        for(int i=0;i<temp.size()-1;i++)
+        {
+            if(temp.get(i).getStartLocation().compareTo(temp.get(i+1).getStartLocation()) > 0)
+                failFlag = false;
+        }
+
+        assertTrue(failFlag, "Database is not sorted correctly!");
     }
 
+    /**
+     * Testing getJobListSOrtedByEndLocation, will test if the returned list is in order when sorted by end location
+     */
     @Test
-    void getJobListSortedByEndLocation() {
+    void getJobListSortedByEndLocation()
+    {
+        boolean failFlag = true;
+
+        ArrayList<Job> temp = test.getJobListSortedByEndLocation();
+
+        for(int i=0;i<temp.size()-1;i++)
+        {
+            if(temp.get(i).getEndLocation().compareTo(temp.get(i+1).getEndLocation()) > 0)
+                failFlag = false;
+        }
+
+        assertTrue(failFlag, "Database is not sorted correctly!");
     }
 
+    /**
+     * Tests getJobListPaid, will test if the returned list is in order when sorted by paid or not
+     */
     @Test
-    void getJobListPaid() {
+    void getJobListPaid()
+    {
+        boolean failFlag = true;
+
+        ArrayList<Job> temp = test.getJobListSortedByPaid();
+
+        for(int i=0;i<temp.size()-1;i++)
+        {
+            if(temp.get(i).getPaid() && !temp.get(i + 1).getPaid())
+                failFlag = false;
+        }
+
+        assertTrue(failFlag, "Database is not sorted correctly!");
     }
 
+    /**
+     * Testing getJobListStatus, will test and see if it returns in order
+     */
     @Test
-    void getJobListStatus() {
+    void getJobListStatus()
+    {
+        boolean failFlag = true;
+
+        ArrayList<Job> temp = test.getJobListSortedByStatus();
+
+        for(int i=0;i<temp.size()-1;i++)
+        {
+            if(temp.get(i).getStatus().compareTo(temp.get(i+1).getStatus()) > 0)
+                failFlag = false;
+        }
+
+        assertTrue(failFlag, "Database is not sorted correctly!");
     }
+
 }
