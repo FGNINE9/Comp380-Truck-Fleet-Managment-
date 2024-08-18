@@ -292,7 +292,7 @@ class JobDatabaseTest
                 failFlag = false;
         }
 
-        assertEquals(true, failFlag, "Database is not sorted correctly!");
+        assertTrue(failFlag, "Database is not sorted correctly!");
     }
 
     /**

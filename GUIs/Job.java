@@ -138,7 +138,7 @@ public class Job
 				+"\nEnd: " + endLocation
 				+"\nPaid: " + paid
 				+"\nStatus: " + status
-				+"\ncompletionTime" + completionTime
+				+"\ncompletionTime: " + completionTime
 				+"\nAssigned to: "+truckerID
 				+"\nHours: " + jobHours
 				+"\nNotes: " + notes);
