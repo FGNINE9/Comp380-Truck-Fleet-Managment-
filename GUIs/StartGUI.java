@@ -111,6 +111,10 @@ public class StartGUI extends Application {
 
     public void Admin(Stage primaryStage) {
 
+        // Instantiate class calls
+        AdministratorRole Admin = new AdministratorRole();
+        Tickets Tickets = new Tickets();
+
         double Xwin = 1000;
         double Ywin = 800;
 
@@ -187,6 +191,30 @@ public class StartGUI extends Application {
             public void handle(ActionEvent event) {
                 primaryStage.close();
                 start(primaryStage);
+            }
+        });
+
+        AssignJob.setOnAction(new EventHandler<ActionEvent>() {
+            public void handle(ActionEvent event) {
+                Admin.AssignJobs();
+            }
+        });
+
+        ViewTickets.setOnAction(new EventHandler<ActionEvent>() {
+            public void handle(ActionEvent event) {
+                Admin.ViewTickets();
+            }
+        });
+
+        DownloadTickets.setOnAction(new EventHandler<ActionEvent>() {
+            public void handle(ActionEvent event) {
+                Tickets.DownloadTickets();
+            }
+        });
+
+        EditTickets.setOnAction(new EventHandler<ActionEvent>() {
+            public void handle(ActionEvent event) {
+                Admin.EditEmployeeData();
             }
         });
 
