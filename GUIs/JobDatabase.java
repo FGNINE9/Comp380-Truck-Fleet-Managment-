@@ -67,7 +67,7 @@ public class JobDatabase
             }
         }//for end
 
-        System.out.println("ADDING JOB  "+newJob.getID());
+       // System.out.println("ADDING JOB  "+newJob.getID());
         //victory state
         jobList.add(newJob);
         writeDatabase();
@@ -95,6 +95,19 @@ public class JobDatabase
             }
         }
         return false;
+    }
+
+    /**
+     * Method to remove a job from the jobList by ID
+     * @param job
+     * @return true if it was able to remove, false if not
+     * @Overload overloads the other removeJob which is based on the ID
+     */
+    public boolean removeJobJob(Job job)
+    {
+        Boolean output = jobList.remove(job);
+        writeDatabase();
+        return output;
     }
 
     /**
@@ -134,7 +147,7 @@ public class JobDatabase
         String notes = job.getNotes();
 
         jobList.remove(job);
-        jobList.add(new Job(jobID, endLocation, newStartLocation, paid, status, completionTime, truckerId, jobHours, notes));
+        jobList.add(new Job(jobID, newStartLocation, endLocation, paid, status, completionTime, truckerId, jobHours, notes));
     }
 
 
@@ -353,7 +366,7 @@ public class JobDatabase
     {
         ArrayList<Job> output = jobList;
 
-        output.sort(new JobIDComparator());
+        output.sort(new JobCompletionTimeComparator());
 
         return output;
     }
@@ -391,7 +404,7 @@ public class JobDatabase
      * Method used to get the list of jobs in the database ordered by endLocation
      * @return a sorted ArrayList of jobs
      */
-    public ArrayList<Job> getJobListPaid()
+    public ArrayList<Job> getJobListSortedByPaid()
     {
         ArrayList<Job> output = jobList;
 
@@ -404,7 +417,7 @@ public class JobDatabase
      * Method used to get the list of jobs in the database ordered by endLocation
      * @return a sorted ArrayList of jobs
      */
-    public ArrayList<Job> getJobListStatus()
+    public ArrayList<Job> getJobListSortedByStatus()
     {
         ArrayList<Job> output = jobList;
 
