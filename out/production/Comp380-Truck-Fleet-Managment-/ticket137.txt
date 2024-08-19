@@ -1,0 +1,9 @@
+ID: 137
+StartLocale: CSUN
+EndLocale: SMC
+Paid: false
+Status: null
+Completion Time: null
+Trucker ID: 0
+Job Hours: 0
+Notes: smelly and funky and \n contaminents 

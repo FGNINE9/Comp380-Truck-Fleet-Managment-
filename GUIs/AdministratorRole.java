@@ -1,5 +1,7 @@
 package GUIs;
 
+import java.util.Date;
+
 /**
  * Class for that holds the methods used by the Admin
  * @author Raashid Norman
@@ -29,6 +31,7 @@ public class AdministratorRole
      * @param password  admins password
      * @param name  admins name
      */
+
     public AdministratorRole(int IDNumber, String password, String name)
     {
         this.IDNumber = IDNumber;
@@ -37,72 +40,40 @@ public class AdministratorRole
     }
 
     /**
-     * Method for Editing Employee data
-     *
-     */
-    public void EditEmployeeData(){
-        JobDatabase database = new JobDatabase();
-        String command = "Yes";
-
-        System.out.println("Printing Employee Data...");
-        database.printDatabase();
-        System.out.println("Select Yes to Edit");
-        System.out.println("Select No to Exit ");
-        /**
-         * if statement for selecting the proper choice
-         * if the command is equal to the string "Yes", edits
-         */
-        if ("Yes".equals(command)) {
-            System.out.println("Select fields to edit ");
-            /**
-             * Add methods to edit certain database fields
-             * Edit database()
-             */
-        } else {
-            System.out.println("Exiting Menu ");
-        }
-
-    }
-
-    /**
      * Method for Assigning jobs to Drivers
      */
-    public void AssignJobs(){
-        Job job = new Job();
-        String command = "Yes";
 
-        System.out.println("Assign GUIs.Job to Employee...");
-        job.printJob();
-        System.out.println("Please Select Options for job");
-        /**
-         * if statement for selecting the proper choice
-         * if the command is equal to the string "Yes", edits
-         */
-        if ("Yes".equals(command)) {
-            job.logJob();
-        } else {
-            System.out.println("Exit log");
-        }
+    public void AssignJobs(TruckerRole trucker, Job job){
 
+        System.out.println("Job assigned to: " + trucker.getName());
+        System.out.println("Current Job: ");
+        System.out.println("Trucker ID: " + job.getTruckerID());
+        System.out.println("Start Location: " + job.getStartLocation());
+        System.out.println("End Location: " + job.getEndLocation());
+        System.out.println("Job Time Completion: " + job.getCompletionTime());
+        System.out.println("Job Status: " + job.getStatus());
+        System.out.println("Job Paid: " + job.getPaid());
+        System.out.println("Job Notes: " + job.getNotes());
     }
+
     /**
      * Method for Viewing tickets for jobs
      */
-    public void ViewTickets() {
-        Tickets ticket = new Tickets();
-        String command = "Yes";
-        System.out.println("Current ticket ");
+    public void ViewTickets(Job job) {
+
+        Tickets ticket = new Tickets(job);
         /**
          * Display Ticket information and then prompt user to download
          */
-        ticket.PrintTicket();
-        System.out.println("If you would like to download the Ticket enter DownloadTickets");
-        if ("Save".equals(command)){
-            ticket.DownloadTickets();
-        } else {
-            System.out.println("Exit");
-        }
-
+        System.out.println("Current ticket: ");
+        System.out.println("Ticket ID: " + ticket.getID());
+        System.out.println("Trucker ID: " + job.getTruckerID());
+        System.out.println("Start Location: " + job.getStartLocation());
+        System.out.println("End Location: " + job.getEndLocation());
+        System.out.println("Job Time Completion: " + job.getCompletionTime());
+        System.out.println("Job Status: " + job.getStatus());
+        System.out.println("Job Paid: " + job.getPaid());
+        System.out.println("Job Notes: " + job.getNotes());
     }
 
 }

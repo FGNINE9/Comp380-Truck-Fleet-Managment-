@@ -156,7 +156,7 @@ public class Job
 				  +"| " + paid
 				  +"| " + status
 				  +"| " + completionTime
-				  +"| "+truckerID
+				  +"| " + truckerID
 				  +"| " + jobHours
 				  +"| " + notes+"\n");
 	}

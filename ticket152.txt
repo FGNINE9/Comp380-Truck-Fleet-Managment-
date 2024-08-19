@@ -1,0 +1,9 @@
+ID: 152
+StartLocale: Set Begin
+EndLocale: Set End
+Paid: false
+Status: Not Set
+Completion Time: Sun Aug 18 12:26:12 PDT 2024
+Trucker ID: -1
+Job Hours: 0
+Notes: No notes

@@ -1,0 +1,9 @@
+ID: 999
+StartLocale: the shire
+EndLocale: mordor
+Paid: false
+Status: null
+Completion Time: null
+Trucker ID: 0
+Job Hours: 0
+Notes: 
