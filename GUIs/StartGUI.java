@@ -20,7 +20,7 @@ public class StartGUI extends Application {
     JobDatabase data = new JobDatabase();
     Image icon = new Image("Icon.png");
     TruckerRole Current = new TruckerRole();
-    TruckerRole RN = new TruckerRole(111, "Pass", "Raashid Norman", "Admin");
+    TruckerRole RN = new TruckerRole(1, "1", "Raashid Norman", "Admin");
     TruckerRole NK = new TruckerRole(222, "Pass", "Naery Kouyoumjian", "Driver");
 
     /**
@@ -73,7 +73,7 @@ public class StartGUI extends Application {
         Notes.setCellValueFactory(new PropertyValueFactory<TableColumn, String>("notes"));
 
         JobTable.getColumns().addAll(ID, Start, End, Notes);
-        jobToTable(JobTable);
+        jobToTableDriver(JobTable);
         JobTable.setPrefSize(500, 550);
         JobTable.setEditable(false);
         JobTable.setTranslateX(Xwin / 50);
@@ -125,24 +125,27 @@ public class StartGUI extends Application {
 
         //Buttons and setup
         Button Logout = new Button("Sign out");
-        Logout.setTranslateX(Xwin / 2.3);
-        Logout.setTranslateY(Ywin / 2.3);
+        Logout.setTranslateX(430);
+        Logout.setTranslateY(350);
+
 
         Button AssignJob = new Button("Assign Job");
-        AssignJob.setTranslateX(Xwin / 2.3);
-        AssignJob.setTranslateY(Ywin / 2.7);
+        AssignJob.setTranslateX(90);
+        AssignJob.setTranslateY(350);
+
 
         Button ViewDrivers = new Button("View Drivers");
-        ViewDrivers.setTranslateX(Xwin / 2.3);
-        ViewDrivers.setTranslateY(Ywin / 3.1);
+        ViewDrivers.setTranslateX(-30);
+        ViewDrivers.setTranslateY(350);
+
 
         Button DownloadTickets = new Button("Download Tickets");
-        DownloadTickets.setTranslateX(Xwin / 2.3);
-        DownloadTickets.setTranslateY(Ywin / 3.5);
+       DownloadTickets.setTranslateX(-250);
+        DownloadTickets.setTranslateY(350);
 
         Button ViewTickets = new Button("View Tickets");
-        ViewTickets.setTranslateX(Xwin / 2.3);
-        ViewTickets.setTranslateY(Ywin / 3.9);
+        ViewTickets.setTranslateX(-140);
+        ViewTickets.setTranslateY(350);
 
 
 
@@ -160,13 +163,27 @@ public class StartGUI extends Application {
         TableColumn End = new TableColumn("To");
         End.setCellValueFactory(new PropertyValueFactory<TableColumn, String>("endLocation"));
 
+        TableColumn paid = new TableColumn("Paid");
+        paid.setCellValueFactory(new PropertyValueFactory<TableColumn, String>("paid"));
+
+        TableColumn status = new TableColumn("Status");
+        status.setCellValueFactory(new PropertyValueFactory<TableColumn, String>("status"));
+
+        TableColumn completionTime = new TableColumn("Completion Time");
+        completionTime.setCellValueFactory(new PropertyValueFactory<TableColumn, String>("completionTime"));
+
+        TableColumn truckerID = new TableColumn("Trucker ID");
+        truckerID.setCellValueFactory(new PropertyValueFactory<TableColumn, String>("truckerID"));
+
+        TableColumn jobHours = new TableColumn("Job Hours");
+        jobHours.setCellValueFactory(new PropertyValueFactory<TableColumn, String>("jobHours"));
 
         TableColumn Notes = new TableColumn("Notes");
         Notes.setCellValueFactory(new PropertyValueFactory<TableColumn, String>("notes"));
 
-        JobTable.getColumns().addAll(ID, Start, End, Notes);
-        jobToTable(JobTable);
-        JobTable.setPrefSize(400, 550);
+        JobTable.getColumns().addAll(ID, Start, End, paid, status, completionTime, truckerID, jobHours, Notes);
+        jobToTableAdmin(JobTable);
+        JobTable.setPrefSize(960, 650);
         JobTable.setEditable(false);
         JobTable.setTranslateX(Xwin / 50);
         JobTable.setTranslateY(Ywin / 20);
@@ -175,6 +192,7 @@ public class StartGUI extends Application {
 
         scroll.setContent(JobTable);
         root.getChildren().addAll(scroll, Logout, title, AssignJob, ViewTickets, DownloadTickets, ViewDrivers);
+
 
         //Scenes
         Scene driverJobList = new Scene(root, Xwin, Ywin);
@@ -314,7 +332,7 @@ public class StartGUI extends Application {
 
     }
 
-    public void jobToTable(TableView table ){
+    public void jobToTableDriver(TableView table ){
         int counter = 0;
         int ID;
         String startLocation;
@@ -332,6 +350,15 @@ public class StartGUI extends Application {
             table.getItems().add(adding);
             counter++;
         }while(data.getJobListSortedByID().size() != counter);
+
+    }
+
+    public void jobToTableAdmin(TableView table ){
+
+        for(int i=0;i<data.getJobListSortedByID().size();i++)
+        {
+            table.getItems().add(data.getJobListSortedByID().get(i));
+        }
 
     }
 
