@@ -2,6 +2,8 @@
 -15| AWAITING INPUT| t,here| false| nuull| Sun Dec 31 15:57:15 PST 1899| 3| 4| nullthing nothing special that wil take a buillion years to process and will not like
 -13| AWAITING INPUT| t,here| false| nuull| Sun Dec 31 15:57:15 PST 1899| 3| 4| nullthing nothing special that wil take a buillion years to process and will not like
 -1| AWAITING INPUT| t,here| false| nuull| Sun Dec 31 15:57:15 PST 1899| 3| 4| nullthing nothing special that wil take a buillion years to process and will not like
+1| PHX| LA| true| InProgress| Mon Aug 19 12:34:52 PDT 2024| 112233| 19| None
+5| Arizona| CA| true| Done| Mon Aug 19 12:35:40 PDT 2024| 112233| 18| Note
 10| he,re| there| true| done| Fri Feb 10 00:00:00 PST 1995| 90| 8| nothing special that wil take a buillion years to process and will not like thsi
 12| LA| Las Vegas| false| En Ro,ute| Thu Feb 20 00:00:00 PST 2020| 6| 67| load is extremely wide
 13| CSUN| SMC| true| crashed| Wed Oct 11 00:00:00 PDT 2023| 1| 2| smelly and funky and \n contaminents present

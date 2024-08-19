@@ -93,7 +93,6 @@ public class TruckerRole {
         List<Job> jobs = jobDatabase.getJobListSortedByDate();
 
         int ttlJobs = 0;
-        int ttlHours = 0;
 
         Date currDate = new Date();
         long aWeekAgo = currDate.getTime() - (7*24*60*60*1000);  //calculating one week ago from current date
@@ -103,7 +102,6 @@ public class TruckerRole {
             if (job.getCompletionTime().getTime() >= aWeekAgo && job.getTruckerID() == this.IDNumber)
             {
                 ttlJobs++;
-                ttlHours += job.getJobHours();
             }
         }
 
@@ -113,8 +111,7 @@ public class TruckerRole {
         }
 
         return "Weekly Summary:\n" +
-                "Total Jobs this week: " + ttlJobs + ".\n" +
-                "Total Hours this week: " + ttlHours + ".\n";
+                "Total Jobs this week: " + ttlJobs + ".\n";
     }
 
 
