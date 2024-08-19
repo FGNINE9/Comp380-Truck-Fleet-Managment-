@@ -21,7 +21,7 @@ public class StartGUI extends Application {
     Image icon = new Image("Icon.png");
     TruckerRole Current = new TruckerRole();
     TruckerRole RN = new TruckerRole(1, "1", "Raashid Norman", "Admin");
-    TruckerRole NK = new TruckerRole(222, "Pass", "Naery Kouyoumjian", "Driver");
+    TruckerRole NK = new TruckerRole(2, "2", "Naery Kouyoumjian", "Driver");
 
     /**
      * Is called to display the Driver job list after login
@@ -31,7 +31,7 @@ public class StartGUI extends Application {
     public void Driver(Stage primaryStage) {
 
         double Xwin = 1000;
-        double Ywin = 600;
+        double Ywin = 800;
 
 
         //Labels
@@ -41,16 +41,16 @@ public class StartGUI extends Application {
 
         //Buttons and setup
         Button Logout = new Button("Sign out");
-        Logout.setTranslateX(Xwin / 2.3);
-        Logout.setTranslateY(Ywin / 2.3);
+        Logout.setTranslateX(450);
+        Logout.setTranslateY(370);
 
         Button StartJob = new Button("Start Job");
-        StartJob.setTranslateX(Xwin / 2.3);
-        StartJob.setTranslateY(Ywin / 3);
+        StartJob.setTranslateX(0);
+        StartJob.setTranslateY(350);
 
         Button CompleteJob = new Button("Complete Job");
-        CompleteJob.setTranslateX(Xwin / 2.3);
-        CompleteJob.setTranslateY(Ywin / 4);
+        CompleteJob.setTranslateX(100);
+        CompleteJob.setTranslateY(350);
 
 
         StackPane root = new StackPane();
@@ -60,21 +60,23 @@ public class StartGUI extends Application {
 
         TableColumn ID = new TableColumn("ID");
         ID.setCellValueFactory(new PropertyValueFactory<TableColumn, Integer>("ID"));
+        ID.setPrefWidth(50);
 
         TableColumn Start = new TableColumn("Start");
         Start.setCellValueFactory(new PropertyValueFactory<TableColumn, String>("startLocation"));
-
+        Start.setPrefWidth(200);
 
         TableColumn End = new TableColumn("To");
         End.setCellValueFactory(new PropertyValueFactory<TableColumn, String>("endLocation"));
-
+        End.setPrefWidth(200);
 
         TableColumn Notes = new TableColumn("Notes");
         Notes.setCellValueFactory(new PropertyValueFactory<TableColumn, String>("notes"));
+        Notes.setPrefWidth(495);
 
         JobTable.getColumns().addAll(ID, Start, End, Notes);
         jobToTableDriver(JobTable);
-        JobTable.setPrefSize(500, 550);
+        JobTable.setPrefSize(960, 650);
         JobTable.setEditable(false);
         JobTable.setTranslateX(Xwin / 50);
         JobTable.setTranslateY(Ywin / 20);
@@ -339,7 +341,6 @@ public class StartGUI extends Application {
         String endLocation;
         String status;
         String notes;
-        ArrayList<Job> joblist = data.getJobListSortedByID();
         do{
             ID = data.getJobListSortedByID().get(counter).getID();
             startLocation = data.getJobListSortedByID().get(counter).getStartLocation();
@@ -372,7 +373,7 @@ public class StartGUI extends Application {
         int counter = 0;
         int prev = 0, counter2 = 0;
 
-        if(note.length() < 25){
+        if(note.length() < 80){
             return note;
         }
 
@@ -380,7 +381,7 @@ public class StartGUI extends Application {
         note = "";
         try {
             while (counter < splitnote.length) {
-                if ( counter < splitnote.length && prev  + splitnote[counter].length() + 1 < 25) {
+                if ( counter < splitnote.length && prev  + splitnote[counter].length() + 1 < 80) {
                     prev = prev  + splitnote[counter].length() + 1;
                     counter++;
                 } else {
