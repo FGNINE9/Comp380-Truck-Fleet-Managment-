@@ -307,46 +307,24 @@ public class StartGUI extends Application {
 
     }
 
-
-    public void jobToTable(TableView table, int TruckerID) {
+    public void jobToTable(TableView table ){
         int counter = 0;
         int ID;
         String startLocation;
         String endLocation;
         String status;
         String notes;
-        do {
+        ArrayList<Job> joblist = data.getJobListSortedByID();
+        do{
             ID = data.getJobListSortedByID().get(counter).getID();
             startLocation = data.getJobListSortedByID().get(counter).getStartLocation();
             endLocation = data.getJobListSortedByID().get(counter).getEndLocation();
             status = data.getJobListSortedByID().get(counter).getStatus();
             notes = toNotesFormat(data.getJobListSortedByID().get(counter).getNotes());
-
             Job adding = new Job(ID, startLocation, endLocation, status, notes);
             table.getItems().add(adding);
             counter++;
-        } while (data.getJobListSortedByID().size() != counter);
-
-    }
-
-    public void jobToTable(TableView table) {
-        int counter = 0;
-        int ID;
-        String startLocation;
-        String endLocation;
-        String status;
-        String notes;
-        do {
-            ID = data.getJobListSortedByID().get(counter).getID();
-            startLocation = data.getJobListSortedByID().get(counter).getStartLocation();
-            endLocation = data.getJobListSortedByID().get(counter).getEndLocation();
-            status = data.getJobListSortedByID().get(counter).getStatus();
-            notes = toNotesFormat(data.getJobListSortedByID().get(counter).getNotes());
-
-            Job adding = new Job(ID, startLocation, endLocation, status, notes);
-            table.getItems().add(adding);
-            counter++;
-        } while (data.getJobListSortedByID().size() != counter);
+        }while(data.getJobListSortedByID().size() != counter);
 
     }
 
@@ -356,19 +334,24 @@ public class StartGUI extends Application {
      * @param note the text you want to split
      * @return the text in the split form
      */
-    public String toNotesFormat(String note) {
+    public String toNotesFormat(String note){
         int counter = 0;
         int prev = 0, counter2 = 0;
+
+        if(note.length() < 25){
+            return note;
+        }
+
         String[] splitnote = note.split(" ");
         note = "";
         try {
             while (counter < splitnote.length) {
-                if (counter < splitnote.length && prev + splitnote[counter].length() + 1 < 45) {
-                    prev = prev + splitnote[counter].length() + 1;
+                if ( counter < splitnote.length && prev  + splitnote[counter].length() + 1 < 25) {
+                    prev = prev  + splitnote[counter].length() + 1;
                     counter++;
                 } else {
 
-                    while (counter2 < counter) {
+                    while (counter2 < counter){
 
                         note = note + splitnote[counter2] + " ";
                         counter2++;
@@ -378,13 +361,9 @@ public class StartGUI extends Application {
                     prev = 0;
                 }
 
-                if (counter == splitnote.length + 1) {
-                    break;
-                }
+                if(counter == splitnote.length + 1){break;}
             }
-        } catch (Exception e) {
-            return "Error Loading String for Sizing!";
-        }
+        }catch (Exception e){return "Error Loading String for Sizing!";}
         return note;
     }
 
