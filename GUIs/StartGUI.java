@@ -132,17 +132,19 @@ public class StartGUI extends Application {
         AssignJob.setTranslateX(Xwin / 2.3);
         AssignJob.setTranslateY(Ywin / 2.7);
 
-        Button ViewTickets = new Button("View Tickets");
-        ViewTickets.setTranslateX(Xwin / 2.3);
-        ViewTickets.setTranslateY(Ywin / 3.1);
+        Button ViewDrivers = new Button("View Drivers");
+        ViewDrivers.setTranslateX(Xwin / 2.3);
+        ViewDrivers.setTranslateY(Ywin / 3.1);
 
         Button DownloadTickets = new Button("Download Tickets");
         DownloadTickets.setTranslateX(Xwin / 2.3);
         DownloadTickets.setTranslateY(Ywin / 3.5);
 
-        Button EditTickets = new Button("Edit Tickets");
-        EditTickets.setTranslateX(Xwin / 2.3);
-        EditTickets.setTranslateY(Ywin / 3.9);
+        Button ViewTickets = new Button("View Tickets");
+        ViewTickets.setTranslateX(Xwin / 2.3);
+        ViewTickets.setTranslateY(Ywin / 3.9);
+
+
 
         StackPane root = new StackPane();
 
@@ -172,7 +174,7 @@ public class StartGUI extends Application {
         ScrollPane scroll = new ScrollPane();
 
         scroll.setContent(JobTable);
-        root.getChildren().addAll(scroll, Logout, title, AssignJob, ViewTickets, DownloadTickets, EditTickets);
+        root.getChildren().addAll(scroll, Logout, title, AssignJob, ViewTickets, DownloadTickets, ViewDrivers);
 
         //Scenes
         Scene driverJobList = new Scene(root, Xwin, Ywin);
@@ -196,25 +198,30 @@ public class StartGUI extends Application {
 
         AssignJob.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent event) {
-                Admin.AssignJobs();
-            }
-        });
-
-        ViewTickets.setOnAction(new EventHandler<ActionEvent>() {
-            public void handle(ActionEvent event) {
-                Admin.ViewTickets();
+                Job job = (Job) JobTable.getSelectionModel().getSelectedItem();
+                Admin.AssignJobs(NK, job);
             }
         });
 
         DownloadTickets.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent event) {
-                Tickets.DownloadTickets();
+                Job job = (Job) JobTable.getSelectionModel().getSelectedItem();
+                Tickets.DownloadTickets(new Tickets(job));
             }
         });
 
-        EditTickets.setOnAction(new EventHandler<ActionEvent>() {
+        ViewTickets.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent event) {
-                Admin.EditEmployeeData();
+                Job job = (Job) JobTable.getSelectionModel().getSelectedItem();
+                Admin.ViewTickets(job);
+            }
+        });
+
+        ViewDrivers.setOnAction(new EventHandler<ActionEvent>() {
+            public void handle(ActionEvent event) {
+                System.out.println("Current Drivers: ");
+                System.out.println("Driver ID: " + NK.getIDNumber());
+                System.out.println("Driver Name: " + NK.getName());
             }
         });
 

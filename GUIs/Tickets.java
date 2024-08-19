@@ -93,27 +93,10 @@ public class Tickets {
     }
 
     /**
-     * Method for printing tickets
-     * @return String
-     */
-    public String PrintTicket()
-    {
-        return( "ID: " + ID
-                + "\nStartLocale: " + startlocale
-                + "\nEndLocale: " + endlocale
-                + "\nPaid: " + paid
-                + "\nStatus: " + status
-                + "\nCompletion Time: " + completionTime
-                + "\nTrucker ID: " + truckerID
-                + "\nJob Hours: " + jobHours
-                + "\nNotes: " + notes);
-    }
-
-    /**
      * Method for downloading tickets to file
      */
-    public void DownloadTickets(){
-        File file = new File("tickets.txt");
+    public void DownloadTickets(Tickets tickets){
+        File file = new File("ticket"+tickets.getID()+".txt");
 
         try {
             /**
@@ -125,15 +108,15 @@ public class Tickets {
              * Write tickets
              * Update as needed
              */
-            writer.write("ID: " + ID+ "\n");
-            writer.write("StartLocale: " + startlocale + "\n");
-            writer.write("EndLocale: " + endlocale + "\n");
-            writer.write("Paid: " + paid + "\n");
-            writer.write("Status: " + status + "\n");
-            writer.write("Completion Time: " + completionTime + "\n");
-            writer.write("Trucker ID: " + truckerID + "\n");
-            writer.write("Job Hours: " + jobHours + "\n");
-            writer.write("Notes: " + notes);
+            writer.write("ID: " + tickets.getID()+ "\n");
+            writer.write("StartLocation: " + tickets.getStartlocale() + "\n");
+            writer.write("EndLocation: " + tickets.getEndlocale() + "\n");
+            writer.write("Paid: " + tickets.isPaid() + "\n");
+            writer.write("Status: " + tickets.getStatus() + "\n");
+            writer.write("Completion Time: " + tickets.getCompletionTime() + "\n");
+            writer.write("Trucker ID: " + tickets.getTruckerID() + "\n");
+            writer.write("Job Hours: " + tickets.getJobHours() + "\n");
+            writer.write("Notes: " + tickets.getNotes());
 
 
             writer.close();
