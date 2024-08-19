@@ -1,18 +1,31 @@
-100| Los Angeles, CA| Lansing, MI| false| Not Assigned| Fri Feb 10 00:00:00 PST 2023| 222| 12| nothing special that wil take a buillion years to process and will not like thsi
--1| AWAITING INPUT| t,here| false| nuull| Sun Dec 31 15:57:15 PST 1899| 3| 4| nullthing nothing special that wil take a buillion years to process and will not like
-12| LA| Las Vegas| false| En Ro,ute| Thu Feb 20 00:00:00 PST 2020| 6| 67| load is extremely wide
-13| CSUN| SMC| true| crashed| Wed Oct 11 00:00:00 PDT 2023| 1| 2| smelly and funky and \n contaminents present
-15| a| b| true| c| Thu Apr 04 00:00:00 PST 300| 390| 100| asssassasas
-20| rr| ttt| false| unkown| Fri Mar 03 00:00:00 PST 30000| 44| 1| asssas,sasas
-999| the shire| mordor| true| cast into the fire| Fri Aug 09 10:42:45 PDT 2024| 20| 400| dirty hobbitses
-10| he,re| there| true| done| Fri Feb 10 00:00:00 PST 1995| 90| 8| nothing special that wil take a buillion years to process and will not like thsi
--15| AWAITING INPUT| t,here| false| nuull| Sun Dec 31 15:57:15 PST 1899| 3| 4| nullthing nothing special that wil take a buillion years to process and will not like
-1004| he,re| there| true| done| Fri Feb 10 00:00:00 PST 1995| 90| 8| nothing special that wil take a buillion years to process and will not like thsi
--13| AWAITING INPUT| t,here| false| nuull| Sun Dec 31 15:57:15 PST 1899| 3| 4| nullthing nothing special that wil take a buillion years to process and will not like
-125| LA| Las Vegas| false| En Ro,ute| Thu Feb 20 00:00:00 PST 2020| 6| 67| load is extremely wide
-137| CSUN| SMC| true| crashed| Wed Oct 11 00:00:00 PDT 2023| 1| 2| smelly and funky and \n contaminents present
-152| a| b| true| c| Thu Apr 04 00:00:00 PST 300| 390| 100| asssassasas
-204| rr| ttt| false| unkown| Fri Mar 03 00:00:00 PST 30000| 44| 1| asssas,sasas
-9929| the shire| mordor| true| cast into the fire| Fri Aug 09 10:42:45 PDT 2024| 20| 400| dirty hobbitses
-104| he,re| there| true| done| Fri Feb 10 00:00:00 PST 1995| 90| 8| nothing special that wil take a buillion years to process and will not like thsi
--125| AWAITING INPUT| t,here| false| nuull| Sun Dec 31 15:57:15 PST 1899| 3| 4| nullthing nothing special that wil take a buillion years to process and will not like
+153| LA| San Francisco| true| En Ro,ute| Tue Feb 22 00:00:00 PST 2022| 15| 99| high priority load
+154| LA| Phoenix| false| Delayed| Tue Jan 10 00:00:00 PST 2023| 18| 32| extremely fragile goods
+-5| PENDING| Unknown| false| Awaiting Confirmation| Sat Dec 30 15:57:15 PST 1899| 10| 5| unknown processing time
+2048| NYC| Boston| true| On Schedule| Mon Jul 15 00:00:00 PDT 2019| 7| 56| high-speed transit
+2049| Chicago| Detroit| false| Cancelled| Sun Oct 08 22:00:00 PDT 2023| 12| 43| route issue detected
+300| he,re| there| true| Completed| Fri Feb 10 00:00:00 PST 1995| 95| 10| routine delivery completed
+3001| Dallas| Houston| true| En Route| Thu Jun 11 22:00:00 PDT 2020| 8| 68| heat-sensitive materials
+3002| Miami| Tampa| false| In Transit| Tue Sep 21 21:00:00 PDT 2021| 22| 75| load requires refrigeration
+3003| he,re| there| true| Delivered| Fri Feb 10 00:00:00 PST 1995| 110| 15| nothing special that will take a long time to process
+500| Awaiting Response| Unknown| false| Pending| Sun Dec 31 15:57:15 PST 1899| 11| 5| awaiting further instructions
+501| Denver| Boulder| true| In Transit| Sun Apr 11 23:00:00 PDT 2021| 6| 44| mountainous terrain, caution required
+600| Seattle| Portland| true| On Schedule| Fri Nov 29 00:00:00 PST 2019| 8| 48| rainy conditions, delay possible
+601| San Diego| LA| false| Delayed| Sun May 10 00:00:00 PDT 2020| 3| 37| traffic congestion expected
+700| Austin| Dallas| true| Completed| Thu Oct 07 22:00:00 PDT 2021| 20| 58| routine delivery
+701| Boston| NYC| false| Delayed| Tue Mar 14 21:00:00 PDT 2023| 12| 76| weather-related delay
+800| Houston| Austin| true| En Route| Sun Dec 16 22:00:00 PST 2018| 15| 82| urgent medical supplies
+801| he,re| there| true| Completed| Fri Feb 10 00:00:00 PST 1995| 130| 25| nothing special that will take a long time to process
+900| PENDING| Unknown| false| Awaiting Update| Sun Dec 31 15:57:15 PST 1899| 9| 6| status unclear, further information required
+901| Sacramento| LA| true| On Time| Fri Apr 19 00:00:00 PDT 2024| 14| 63| on schedule, no issues reported
+1000| Las Vegas| Phoenix| false| Delayed| Fri Jul 22 00:00:00 PDT 2022| 5| 77| extreme heat, slow progress
+1001| Portland| Seattle| true| En Route| Sat Oct 10 00:00:00 PDT 2020| 7| 55| foggy conditions, proceed with caution
+1100| he,re| there| true| Completed| Fri Feb 10 00:00:00 PST 1995| 145| 30| nothing special that will take a long time to process
+1101| Awaiting Confirmation| Unknown| false| Pending| Sun Dec 31 15:57:15 PST 1899| 8| 4| waiting for recipient confirmation
+1200| Dallas| San Antonio| true| On Time| Wed May 23 22:00:00 PDT 2018| 6| 36| delivery on track
+1201| Las Vegas| LA| false| Delayed| Wed Jun 14 00:00:00 PDT 2023| 13| 74| unexpected road closures
+1300| Chicago| NYC| true| En Route| Mon Feb 03 22:00:00 PST 2020| 11| 84| express delivery, high priority
+1301| Miami| Orlando| false| In Transit| Thu Sep 29 21:00:00 PDT 2022| 4| 50| hazardous materials, handle with care
+1400| he,re| there| true| Completed| Fri Feb 10 00:00:00 PST 1995| 160| 35| nothing special that will take a long time to process
+1401| Awaiting Response| Unknown| false| Pending| Sun Dec 31 15:57:15 PST 1899| 7| 5| awaiting further instructions
+1500| LA| Phoenix| true| On Schedule| Tue Aug 15 00:00:00 PDT 2023| 17| 93| extreme urgency, deliver promptly
+1501| Houston| Dallas| false| Delayed| Sat Oct 19 22:00:00 PDT 2024| 9| 65| weather-related delay, thunderstorm warning
