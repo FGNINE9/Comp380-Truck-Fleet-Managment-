@@ -1,0 +1,9 @@
+ID: 601
+StartLocation: San Diego
+EndLocation: LA
+Paid: false
+Status: Delayed
+Completion Time: Sun May 10 00:00:00 PDT 2020
+Trucker ID: 3
+Job Hours: 37
+Notes: traffic congestion expected
