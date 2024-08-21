@@ -44,16 +44,26 @@ public class AdministratorRole
      */
 
     public void AssignJobs(TruckerRole trucker, Job job){
-
+        /**
+         * Manually Creates a new job by assigning
+         * the ID of a trucker to the job
+         */
+        Job updatedJob = new Job(
+                job.getID(),
+                job.getStartLocation(),
+                job.getEndLocation(),
+                job.getPaid(),
+                job.getStatus(),
+                job.getCompletionTime(),
+                trucker.getIDNumber(),
+                job.getJobHours(),
+                job.getNotes()
+        );
+        /**
+         * Displays the newly assigned job
+         */
         System.out.println("Job assigned to: " + trucker.getName());
-        System.out.println("Current Job: ");
-        System.out.println("Trucker ID: " + job.getTruckerID());
-        System.out.println("Start Location: " + job.getStartLocation());
-        System.out.println("End Location: " + job.getEndLocation());
-        System.out.println("Job Time Completion: " + job.getCompletionTime());
-        System.out.println("Job Status: " + job.getStatus());
-        System.out.println("Job Paid: " + job.getPaid());
-        System.out.println("Job Notes: " + job.getNotes());
+        System.out.println(updatedJob.printJob());
     }
 
     /**
