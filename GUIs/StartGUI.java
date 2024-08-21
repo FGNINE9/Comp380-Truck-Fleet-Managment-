@@ -1,7 +1,9 @@
 package GUIs;
 
+import javafx.animation.PauseTransition;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -12,8 +14,10 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 public class StartGUI extends Application {
 
@@ -22,6 +26,7 @@ public class StartGUI extends Application {
     TruckerRole Current = new TruckerRole();
     TruckerRole RN = new TruckerRole(1, "1", "Raashid Norman", "Admin");
     TruckerRole NK = new TruckerRole(2, "2", "Naery Kouyoumjian", "Driver");
+    ArrayList<Job> list;
 
     /**
      * Is called to display the Driver job list after login
@@ -33,7 +38,17 @@ public class StartGUI extends Application {
         double Xwin = 1000;
         double Ywin = 800;
 
+        Label noSelection = new Label("Job must be selected!");
+        noSelection.setTextFill(Color.RED);
+        noSelection.setTranslateX(0);
+        noSelection.setTranslateY(370);
 
+        Label Selectionnotvalid = new Label("Job Selected is not Pending, make another selection!");
+        Selectionnotvalid.setTextFill(Color.RED);
+        Selectionnotvalid.setFont(Font.font("Calibre", 12));
+        Selectionnotvalid.setTranslateX(0);
+        Selectionnotvalid.setTranslateY(370);
+        
         //Labels
         Label title = new Label("Pending Jobs:");
         title.setTranslateX(-Xwin / 2.3);
@@ -52,29 +67,44 @@ public class StartGUI extends Application {
         CompleteJob.setTranslateX(100);
         CompleteJob.setTranslateY(350);
 
+        Button ViewCur = new Button("View Current Job");
+        ViewCur.setTranslateX(-100);
+        ViewCur.setTranslateY(350);
+
+        Button ViewSummary = new Button("View Summary");
+        ViewSummary.setTranslateX(-350);
+        ViewSummary.setTranslateY(350);
+
+        Button ViewPending = new Button("View Pending Jobs");
+        ViewPending.setTranslateX(-225);
+        ViewPending.setTranslateY(350);
+
 
         StackPane root = new StackPane();
-
 
         TableView<Job> JobTable = new TableView<Job>();
 
         TableColumn ID = new TableColumn("ID");
         ID.setCellValueFactory(new PropertyValueFactory<TableColumn, Integer>("ID"));
-        ID.setPrefWidth(50);
+        ID.setPrefWidth(100);
 
         TableColumn Start = new TableColumn("Start");
         Start.setCellValueFactory(new PropertyValueFactory<TableColumn, String>("startLocation"));
-        Start.setPrefWidth(200);
+        Start.setPrefWidth(175);
 
         TableColumn End = new TableColumn("To");
         End.setCellValueFactory(new PropertyValueFactory<TableColumn, String>("endLocation"));
-        End.setPrefWidth(200);
+        End.setPrefWidth(175);
+
+        TableColumn Status = new TableColumn("Status");
+        Status.setCellValueFactory(new PropertyValueFactory<TableColumn, String>("status"));
+        Status.setPrefWidth(100);
 
         TableColumn Notes = new TableColumn("Notes");
         Notes.setCellValueFactory(new PropertyValueFactory<TableColumn, String>("notes"));
-        Notes.setPrefWidth(495);
+        Notes.setPrefWidth(395);
 
-        JobTable.getColumns().addAll(ID, Start, End, Notes);
+        JobTable.getColumns().addAll(ID, Start, End, Status, Notes);
         jobToTableDriver(JobTable);
         JobTable.setPrefSize(960, 650);
         JobTable.setEditable(false);
@@ -84,7 +114,7 @@ public class StartGUI extends Application {
         ScrollPane scroll = new ScrollPane();
 
         scroll.setContent(JobTable);
-        root.getChildren().addAll(scroll, Logout, title, StartJob, CompleteJob);
+        root.getChildren().addAll(scroll, Logout, title, StartJob, CompleteJob, ViewCur, ViewSummary, ViewPending, noSelection, Selectionnotvalid);
         //Scenes
         Scene driverJobList = new Scene(root, Xwin, Ywin);
 
@@ -104,6 +134,65 @@ public class StartGUI extends Application {
 
                 primaryStage.close();
                 start(primaryStage);
+
+
+            }
+        });
+        
+        noSelection.setVisible(false);
+        Selectionnotvalid.setVisible(false);
+        PauseTransition noSelectiontimed = new PauseTransition(Duration.seconds(3));
+        PauseTransition Selectionnotvalidtimed = new PauseTransition(Duration.seconds(3));
+
+        StartJob.setOnAction(new EventHandler<ActionEvent>() {
+            public void handle(ActionEvent event) {
+                Job selectedJob = JobTable.getSelectionModel().getSelectedItem();
+                if(selectedJob == null) {
+                    noSelection.setVisible(true);
+                    noSelectiontimed.setOnFinished( e -> noSelection.setVisible(false));
+                    noSelectiontimed.play();
+                }else{
+                    if(!selectedJob.getStatus().equals("Pending")){
+                        Selectionnotvalid.setVisible(true);
+                        Selectionnotvalidtimed.setOnFinished( e -> Selectionnotvalid.setVisible(false));
+                        Selectionnotvalidtimed.play();
+                    }else{
+                        data.startJob(selectedJob);
+                        JobTable.getItems().clear();
+                        jobToTableDriver(JobTable);
+                    }
+                }
+
+            }
+        });
+
+        CompleteJob.setOnAction(new EventHandler<ActionEvent>() {
+            public void handle(ActionEvent event) {
+
+
+
+            }
+        });
+
+        ViewCur.setOnAction(new EventHandler<ActionEvent>() {
+            public void handle(ActionEvent event) {
+
+
+
+            }
+        });
+
+        ViewSummary.setOnAction(new EventHandler<ActionEvent>() {
+            public void handle(ActionEvent event) {
+
+                System.out.print(Current.getWeeklySummary());
+
+            }
+        });
+
+        ViewPending.setOnAction(new EventHandler<ActionEvent>() {
+            public void handle(ActionEvent event) {
+
 
 
             }
@@ -267,6 +356,7 @@ public class StartGUI extends Application {
         wrong.setTranslateY(-50);
         wrong.setFont(Font.font("Calibre", 20));
         wrong.setTextFill(Color.RED);
+        wrong.setVisible(false);
 
         Label UserNameLabel = new Label("User Name: ");
         UserNameLabel.setTranslateX(-140);
@@ -289,11 +379,15 @@ public class StartGUI extends Application {
         password.setTranslateY(10);
 
         StackPane log = new StackPane();
-        log.getChildren().addAll(userName, password, Title, UserNameLabel, PasswordLabel, SignInButton);
+        log.getChildren().addAll(userName, password, Title, UserNameLabel, PasswordLabel, SignInButton, wrong);
+
+        PauseTransition wrongtimed = new PauseTransition(Duration.seconds(3));
+        wrongtimed.setOnFinished(e -> wrong.setVisible(false));
 
         SignInButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
 
             public void handle(MouseEvent event) {
+
                 if (Integer.parseInt(userName.getText()) == NK.getIDNumber() && password.getText().equals(NK.getPassword())) {
                     //Driver GUI
                     Current.setIDNumber(Integer.parseInt(userName.getText()));
@@ -309,7 +403,10 @@ public class StartGUI extends Application {
                     Admin(StartStage);
 
                 } else {
-                    log.getChildren().add(wrong);
+                    wrong.setVisible(true);
+                    wrongtimed.setOnFinished(e -> wrong.setVisible(false));
+                    wrongtimed.play();
+
                 }
 
 
@@ -341,12 +438,13 @@ public class StartGUI extends Application {
         String endLocation;
         String status;
         String notes;
+        list = data.getJobListSortedByID();
         do{
-            ID = data.getJobListSortedByID().get(counter).getID();
-            startLocation = data.getJobListSortedByID().get(counter).getStartLocation();
-            endLocation = data.getJobListSortedByID().get(counter).getEndLocation();
-            status = data.getJobListSortedByID().get(counter).getStatus();
-            notes = toNotesFormat(data.getJobListSortedByID().get(counter).getNotes());
+            ID = list.get(counter).getID();
+            startLocation = list.get(counter).getStartLocation();
+            endLocation = list.get(counter).getEndLocation();
+            status = list.get(counter).getStatus();
+            notes = toNotesFormat(list.get(counter).getNotes(), 70);
             Job adding = new Job(ID, startLocation, endLocation, status, notes);
             table.getItems().add(adding);
             counter++;
@@ -356,10 +454,30 @@ public class StartGUI extends Application {
 
     public void jobToTableAdmin(TableView table ){
 
-        for(int i=0;i<data.getJobListSortedByID().size();i++)
-        {
-            table.getItems().add(data.getJobListSortedByID().get(i));
-        }
+        int counter = 0;
+        int ID;
+        String startLocation;
+        String endLocation;
+        boolean paid;
+        String status;
+        Date Compl;
+        int TruckID;
+        int JobH;
+        String notes;
+        do{
+            ID = data.getJobListSortedByID().get(counter).getID();
+            startLocation = data.getJobListSortedByID().get(counter).getStartLocation();
+            endLocation = data.getJobListSortedByID().get(counter).getEndLocation();
+            paid = data.getJobListSortedByID().get(counter).getPaid();
+            status = data.getJobListSortedByID().get(counter).getStatus();
+            Compl = data.getJobListSortedByID().get(counter).getCompletionTime();
+            TruckID = data.getJobListSortedByID().get(counter).getTruckerID();
+            JobH = data.getJobListSortedByID().get(counter).getJobHours();
+            notes = toNotesFormat(data.getJobListSortedByID().get(counter).getNotes(), 30);
+            Job adding = new Job(ID, startLocation, endLocation, paid, status,Compl, TruckID, JobH, notes);
+            table.getItems().add(adding);
+            counter++;
+        }while(data.getJobListSortedByID().size() != counter);
 
     }
 
@@ -369,11 +487,11 @@ public class StartGUI extends Application {
      * @param note the text you want to split
      * @return the text in the split form
      */
-    public String toNotesFormat(String note){
+    public String toNotesFormat(String note, int space){
         int counter = 0;
         int prev = 0, counter2 = 0;
 
-        if(note.length() < 80){
+        if(note.length() < space){
             return note;
         }
 
@@ -381,7 +499,7 @@ public class StartGUI extends Application {
         note = "";
         try {
             while (counter < splitnote.length) {
-                if ( counter < splitnote.length && prev  + splitnote[counter].length() + 1 < 80) {
+                if ( counter < splitnote.length && prev  + splitnote[counter].length() + 1 < space) {
                     prev = prev  + splitnote[counter].length() + 1;
                     counter++;
                 } else {

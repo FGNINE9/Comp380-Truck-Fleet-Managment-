@@ -123,6 +123,7 @@ public class Job
 		this.ID = ID;
 		this.startLocation = startLocation;
 		this.endLocation = endLocation;
+		this.status = status;
 		this.notes = notes;
 	}
 
@@ -197,7 +198,7 @@ public class Job
 	 * Setter for StartLocation
 	 * @param startLocation string
 	 */
-	private void setStartLocation(String startLocation)
+	protected void setStartLocation(String startLocation)
 	{
 		this.startLocation = startLocation;
 	}
@@ -214,7 +215,7 @@ public class Job
 	 * Setter for endLocation
 	 * @param endLocation string
 	 */
-	private void setEndLocation(String endLocation)
+	protected void setEndLocation(String endLocation)
 	{
 		this.endLocation = endLocation;
 	}
@@ -232,7 +233,7 @@ public class Job
 	 * Setter for paid
 	 * @param paid boolean
 	 */
-	private void setPaid(boolean paid)
+	protected void setPaid(boolean paid)
 	{
 		this.paid = paid;
 	}
@@ -250,7 +251,7 @@ public class Job
 	 * Setter for status
 	 * @param status string
 	 */
-	private void setStatus(String status)
+	protected void setStatus(String status)
 	{
 		this.status = status;
 	}
@@ -268,7 +269,7 @@ public class Job
 	 * Setter for completionTime
 	 * @param completionTime Date
 	 */
-	private void setCompletionTime(Date completionTime)
+	protected void setCompletionTime(Date completionTime)
 	{
 		this.completionTime = completionTime;
 	}
@@ -286,7 +287,7 @@ public class Job
 	 * Setter for truckerID
 	 * @param truckerID int
 	 */
-	private void setTruckerID(int truckerID)
+	protected void setTruckerID(int truckerID)
 	{
 		this.truckerID = truckerID;
 	}
@@ -304,7 +305,7 @@ public class Job
 	 * Setter for jobHours
 	 * @param jobHours int
 	 */
-	private void setJobHours(int jobHours)
+	protected void setJobHours(int jobHours)
 	{
 		this.jobHours = jobHours;
 	}
@@ -322,7 +323,7 @@ public class Job
 	 * Setter for notes
 	 * @param notes String
 	 */
-	private void setNotes(String notes)
+	protected void setNotes(String notes)
 	{
 		this.notes = notes;
 	}
