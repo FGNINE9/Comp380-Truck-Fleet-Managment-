@@ -29,3 +29,4 @@
 1401| Awaiting Response| Unknown| false| Pending| Sun Dec 31 15:57:15 PST 1899| 7| 5| awaiting further instructions
 1500| LA| Phoenix| true| On Schedule| Tue Aug 15 00:00:00 PDT 2023| 17| 93| extreme urgency, deliver promptly
 1501| Houston| Dallas| false| Delayed| Sat Oct 19 22:00:00 PDT 2024| 9| 65| weather-related delay, thunderstorm warning
+123| NY| LA| true| In Progress| Wed Aug 21 18:07:38 PDT 2024| 2| 1| None
