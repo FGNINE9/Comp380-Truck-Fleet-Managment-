@@ -260,7 +260,7 @@ public class StartGUI extends Application {
 
 
         Button AssignJob = new Button("Assign Job");
-        AssignJob.setTranslateX(90);
+        AssignJob.setTranslateX(80);
         AssignJob.setTranslateY(350);
 
 
@@ -270,12 +270,25 @@ public class StartGUI extends Application {
 
 
         Button DownloadTickets = new Button("Download Tickets");
-       DownloadTickets.setTranslateX(-250);
+        DownloadTickets.setTranslateX(-250);
         DownloadTickets.setTranslateY(350);
 
         Button ViewTickets = new Button("View Tickets");
         ViewTickets.setTranslateX(-140);
         ViewTickets.setTranslateY(350);
+
+        /**
+         * Check these boxes before clicking the assign button
+         */
+        CheckBox paidCheckBox = new CheckBox("Paid");
+        paidCheckBox.setTranslateX(190);
+        paidCheckBox.setTranslateY(350);
+
+        ComboBox<String> statusComboBox = new ComboBox<>();
+        statusComboBox.getItems().addAll("Not Started", "In Progress", "Completed", "Delayed", "En Route", "On Time");
+        statusComboBox.setValue("Not Started");
+        statusComboBox.setTranslateX(300);
+        statusComboBox.setTranslateY(350);
 
 
 
@@ -321,7 +334,7 @@ public class StartGUI extends Application {
         ScrollPane scroll = new ScrollPane();
 
         scroll.setContent(JobTable);
-        root.getChildren().addAll(scroll, Logout, title, AssignJob, ViewTickets, DownloadTickets, ViewDrivers);
+        root.getChildren().addAll(scroll, Logout, title, AssignJob, ViewTickets, DownloadTickets, ViewDrivers, paidCheckBox, statusComboBox, JobTable);
 
 
         //Scenes
@@ -343,11 +356,16 @@ public class StartGUI extends Application {
                 start(primaryStage);
             }
         });
-
+        /**
+         * Also marks if job is completed
+         */
         AssignJob.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent event) {
                 Job job = (Job) JobTable.getSelectionModel().getSelectedItem();
-                Admin.AssignJobs(NK, job);
+                boolean paid = paidCheckBox.isSelected();
+                String status = statusComboBox.getValue();
+                Admin.AssignJobs(NK, job, paid, status);
+
             }
         });
 
