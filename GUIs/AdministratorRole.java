@@ -14,6 +14,7 @@ public class AdministratorRole
     private int IDNumber;
     private String password;
     private String name;
+    private JobDatabase jobDatabase;
 
     /**
      * Default constructor
@@ -23,6 +24,7 @@ public class AdministratorRole
         IDNumber = -1;
         password = "NOT INPUT";
         name = "DEFAULT";
+        jobDatabase = new JobDatabase();
     }
 
     /**
@@ -37,23 +39,25 @@ public class AdministratorRole
         this.IDNumber = IDNumber;
         this.password = password;
         this.name = name;
+        this.jobDatabase = new JobDatabase();
     }
 
     /**
      * Method for Assigning jobs to Drivers
      */
 
-    public void AssignJobs(TruckerRole trucker, Job job){
+    public void AssignJobs(TruckerRole trucker, Job job, boolean paid, String status){
         /**
          * Manually Creates a new job by assigning
          * the ID of a trucker to the job
+         * for paid and status input is selected in the GUI
          */
         Job updatedJob = new Job(
                 job.getID(),
                 job.getStartLocation(),
                 job.getEndLocation(),
-                job.getPaid(),
-                job.getStatus(),
+                paid,
+                status,
                 job.getCompletionTime(),
                 trucker.getIDNumber(),
                 job.getJobHours(),
