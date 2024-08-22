@@ -1,0 +1,9 @@
+ID: 501
+StartLocation: Denver
+EndLocation: Boulder
+Paid: true
+Status: In Transit
+Completion Time: Sun Apr 11 23:00:00 PDT 2021
+Trucker ID: 6
+Job Hours: 44
+Notes: mountainous terrain, caution 

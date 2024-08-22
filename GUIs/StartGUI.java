@@ -79,6 +79,9 @@ public class StartGUI extends Application {
         ViewPending.setTranslateX(-225);
         ViewPending.setTranslateY(350);
 
+        Button InputJobData = new Button("Input Job Data");
+        InputJobData.setTranslateX(200);
+        InputJobData.setTranslateY(350);
 
         StackPane root = new StackPane();
 
@@ -114,7 +117,7 @@ public class StartGUI extends Application {
         ScrollPane scroll = new ScrollPane();
 
         scroll.setContent(JobTable);
-        root.getChildren().addAll(scroll, Logout, title, StartJob, CompleteJob, ViewCur, ViewSummary, ViewPending, noSelection, Selectionnotvalid);
+        root.getChildren().addAll(scroll, Logout, title, StartJob, CompleteJob, ViewCur, ViewSummary, ViewPending, noSelection, Selectionnotvalid, InputJobData);
         //Scenes
         Scene driverJobList = new Scene(root, Xwin, Ywin);
 
@@ -165,6 +168,36 @@ public class StartGUI extends Application {
 
             }
         });
+
+        InputJobData.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                TextInputDialog dialog = new TextInputDialog();
+                dialog.setTitle("Input Job Data");
+
+                dialog.setHeaderText("Enter Job ID:");
+
+                dialog.showAndWait().ifPresent(jobId -> {
+                    dialog.setHeaderText("Enter Start Location");
+                dialog.showAndWait().ifPresent(startLocation -> {
+                    dialog.setHeaderText("Enter End Location:");
+                dialog.showAndWait().ifPresent(endLocation -> {
+                    boolean paid = true;
+                    String status = "In Progress";
+                    Date completionTime = new Date();
+                    int jobHours = 1;
+                    String notes = "None";
+
+                    Current.inputLoadData(Integer.parseInt(jobId), startLocation, endLocation, paid, status, completionTime, jobHours, notes);
+                        });
+                });
+                });
+            }
+        });
+
+
+
+
 
         CompleteJob.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent event) {

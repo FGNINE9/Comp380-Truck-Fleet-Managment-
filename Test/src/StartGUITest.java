@@ -36,7 +36,11 @@ class StartGUITest {
         String test = "Load is 12 inches wider than normal!";
         String Expected = "Load is 12 inches wider\nthan normal!";
 
-        assertEquals(Expected, tester.toNotesFormat(test), "Text is not valid for diplay!" );
+        int space = 25;
+
+        assertEquals(Expected, tester.toNotesFormat(test, space), "Text is not valid for diplay!" );
 
     }
+
+
 }
