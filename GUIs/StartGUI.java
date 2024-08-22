@@ -178,19 +178,25 @@ public class StartGUI extends Application {
                 dialog.setHeaderText("Enter Job ID:");
 
                 dialog.showAndWait().ifPresent(jobId -> {
-                    dialog.setHeaderText("Enter Start Location");
-                dialog.showAndWait().ifPresent(startLocation -> {
-                    dialog.setHeaderText("Enter End Location:");
-                dialog.showAndWait().ifPresent(endLocation -> {
-                    boolean paid = true;
-                    String status = "In Progress";
-                    Date completionTime = new Date();
-                    int jobHours = 1;
-                    String notes = "None";
+                // Find the job by job ID
+                    Job selectedJob = data.getJobListSortedByID()
+                            .stream().filter(job -> job.getID() == Integer.parseInt(jobId))
+                            .findFirst().orElse(null);
 
-                    Current.inputLoadData(Integer.parseInt(jobId), startLocation, endLocation, paid, status, completionTime, jobHours, notes);
+                    if ( selectedJob != null) {
+                        dialog.setHeaderText("Add details to notes:");
+                        dialog.showAndWait().ifPresent(newNote -> {
+                            //add details to the existing note
+                            String updatedNote = selectedJob.getNotes() + "\n" + newNote;
+                            selectedJob.setNotes(updatedNote);
+
+                            //Refresh the table to see the updated note
+                            JobTable.refresh();
                         });
-                });
+                    }
+                    else{
+                        System.out.println("Job not found.");
+                    }
                 });
             }
         });
