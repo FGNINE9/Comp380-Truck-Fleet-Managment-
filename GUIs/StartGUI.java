@@ -1,5 +1,6 @@
 package GUIs;
 
+
 import javafx.animation.PauseTransition;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
@@ -18,6 +19,11 @@ import javafx.util.Duration;
 
 import java.util.ArrayList;
 import java.util.Date;
+
+import GUIs.Job;
+import GUIs.TruckerRole;
+import GUIs.JobDatabase;
+import GUIs.Tickets;
 
 public class StartGUI extends Application {
 
@@ -190,8 +196,8 @@ public class StartGUI extends Application {
                             String updatedNote = selectedJob.getNotes() + "\n" + newNote;
                             selectedJob.setNotes(updatedNote);
 
-                            //Refresh the table to see the updated note
-                            JobTable.refresh();
+                            JobTable.getItems().clear();
+                            jobToTableDriver(JobTable);
                         });
                     }
                     else{

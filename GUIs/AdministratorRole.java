@@ -1,5 +1,7 @@
 package GUIs;
 
+import GUIs.TruckerRole;
+import GUIs.Job;
 import java.util.Date;
 
 /**
